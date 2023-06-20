@@ -1,10 +1,14 @@
-import { Hero } from "@/components/visitors/langingPage";
+import { Page } from "@/components/common";
+import { Hero, Blog, Podcast } from "@/components/visitors/langingPage";
+
 
 export default function HomePage() {
   return (
-    <main className="max-w-[100vw] overflow-hidden">
+    <Page className="max-w-[100vw] flex flex-col gap-8 overflow-hidden">
       <Hero />
-    </main>
+      <Blog />
+      <Podcast />
+    </Page>
   );
 }
 

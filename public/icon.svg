@@ -89,4 +89,13 @@
        id="rect46"
        style="stroke-width:5.83231" />
   </g>
+  <style>
+    @media (prefers-color-scheme: dark) {
+      fill: "#fff"
+    },
+
+    @media (prefers-color-scheme: light) {
+      fill: "#000"
+    }
+  </style>
 </svg>

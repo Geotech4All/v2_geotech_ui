@@ -1629,3 +1629,11 @@ export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TagsQuery = { __typename?: 'Query', tags?: { __typename?: 'TagTypeConnection', edges: Array<{ __typename?: 'TagTypeEdge', cursor: string, node?: { __typename?: 'TagType', title: string, description?: string | null, category: string, id: string, tagId?: string | null } | null } | null> } | null };
+
+export type AllPostsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type AllPostsQuery = { __typename?: 'Query', allPosts?: { __typename?: 'PostTypeConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null }, edges: Array<{ __typename?: 'PostTypeEdge', cursor: string, node?: { __typename?: 'PostType', abstract?: string | null, title: string, views: number, postId?: string | null, readLength?: number | null, likes: number, lastUpdated: any, author: { __typename?: 'UserType', fullName?: string | null, id: string, profile?: { __typename?: 'ProfileType', image?: { __typename?: 'ImageType', url: string, description?: string | null } | null } | null }, coverPhoto?: { __typename?: 'ImageType', description?: string | null, url: string } | null } | null } | null> } | null };

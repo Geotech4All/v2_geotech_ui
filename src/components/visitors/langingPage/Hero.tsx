@@ -25,7 +25,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="flex flex-col z-0 relative w-fit items-baseline">
-        <div className="aspect-square z-0 w-full translate-x-6 md:translate-x-52 md:translate-y-32">
+        <div className="md:aspect-square z-0 w-full translate-x-6 md:translate-x-52 md:translate-y-32">
           <Image
             width="1000"
             height="600"

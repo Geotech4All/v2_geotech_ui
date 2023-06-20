@@ -9,7 +9,13 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Geotech",
   description: "Redefining geology with technology",
-  icons: ["/icon.svg", "icon_black.svg"],
+  icons: {
+    icon: {
+      rel: "icon",
+      type: "image/svg",
+      url: "/icon.svg"
+    }
+  },
   openGraph: {
     type: "website",
     url: "https://geotech4all.com",
@@ -28,6 +34,10 @@ export const metadata = {
     creator: "@creator",
     site: "@site",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1
+  }
 };
 
 export default function RootLayout({
