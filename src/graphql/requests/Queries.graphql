@@ -1,0 +1,14 @@
+query Tags {
+  tags {
+    edges {
+      cursor
+      node {
+        title
+        description
+        category
+        id
+        tagId
+      }
+    }
+  }
+}

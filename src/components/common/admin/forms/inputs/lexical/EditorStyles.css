@@ -1,0 +1,63 @@
+.editor-heading-h1 {
+  font-size: 4rem;
+  font-weight: 900;
+}
+.editor-heading-h2 {
+  font-size: 3.5rem;
+  font-weight: 850;
+}
+.editor-heading-h3 {
+  font-size: 3.0rem;
+  font-weight: 800;
+}
+.editor-heading-h4 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Lists */
+.editor-listItem {
+  margin-left: 1.3rem;
+  outline: none;
+}
+.editor-list-ul {
+  list-style: disc outside none;
+}
+.editor-list-ol {
+  list-style: decimal outside none;
+  margin-left: 1.3rem;
+}
+.editor-listItemUnchecked {
+  font-weight: 500;
+}
+
+li[role=checkbox] {
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 5px;
+}
+
+li[role=checkbox].editor-listItemUnchecked::before, li[role=checkbox].editor-listItemChecked::before {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+li[role=checkbox].editor-listItemUnchecked::before {
+  content: url("/unchecked.svg");
+  width: 22px;
+  height: 22px;
+}
+
+li[role=checkbox].editor-listItemChecked::before {
+  content: url("/checkbox-checked.svg");
+}
+  /* list: { */
+  /*   nested: { */
+  /*     listitem: 'editor-nested-listitem', */
+  /*   }, */
+  /*   listitemChecked: 'editor-listItemChecked', */
+  /* }, */
