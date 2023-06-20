@@ -13,14 +13,11 @@ import {
   FieldSet,
   TextEditor,
 } from "@/components/common/admin";
-import { EditorTobLevelBlocks } from "@/components/common/admin/forms/inputs/TextEditor";
 
 export default function OpportunityForm() {
-  const [content, setContent] = React.useState<EditorTobLevelBlocks>();
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const [tab, setTab] = React.useState(0);
 
-  const getContent = (content: EditorTobLevelBlocks) => setContent(content);
 
   const handleExpand = (panel: string) => {
     return function (_: React.SyntheticEvent, isExpanded: boolean) {
