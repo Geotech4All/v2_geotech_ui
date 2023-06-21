@@ -1,8 +1,33 @@
+import PostList from "@/components/blog/PostList";
+import PostsGrid from "@/components/blog/PostsGrid";
 import { Page } from "@/components/common";
+import { QueryAllPostsArgs, QueryPopularPostsArgs } from "@/graphql/generated";
+import { ALL_POSTS, POPULAR_POSTS } from "@/graphql/requests/queries/Queries";
+import { QueryReturs } from "@/graphql/types";
+import { graphqlQuery } from "@/graphql/utils/fetch";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getBlogPosts();
   return (
-    <Page>
+    <Page className="lg:px-32 flex flex-col gap-5">
+      <section className="flex flex-col gap-3">
+        <h2 className="font-bold text-lg">Popular</h2>
+        <PostsGrid posts={posts.popular} />
+      </section>
+      <section>
+        <h2 className="font-bold text-lg">Latest</h2>
+        <PostList initialPosts={posts.latest}/>
+      </section>
     </Page>
   )
+}
+
+async function getBlogPosts() {
+  const url = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? ""
+  const popularPosts = await graphqlQuery<QueryPopularPostsArgs, { posts: typeof QueryReturs.popularPosts}>(url, POPULAR_POSTS, { first: 7 })
+  const latestPosts = await graphqlQuery<QueryAllPostsArgs, { posts: typeof QueryReturs.allPosts}>(url, ALL_POSTS, { first: 20 })
+  return {
+    popular: popularPosts.data.posts,
+    latest: latestPosts.data.posts
+  }
 }

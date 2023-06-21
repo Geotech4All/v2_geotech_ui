@@ -37,7 +37,7 @@ export default function MidPostCard(props: PostCardProps) {
           <h3 className="font-bold text-2xl line-clamp-2">{post?.title}</h3>
           <div className="flex flex-col relative gap-3">
             <p className="line-clamp-2">{post?.abstract}</p>
-            <Author user={post?.author} />
+            <Author dateTime={post?.lastUpdated} user={post?.author} />
             <em className="absolute bottom-2 right-1">{readLength} min read</em>
           </div>
         </div>

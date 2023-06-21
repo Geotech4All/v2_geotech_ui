@@ -1,21 +1,14 @@
-import { POPULAR_POSTS } from "@/graphql/requests/Queries";
-import { Query, QueryAllPostsArgs } from "@/graphql/generated";
+import { POPULAR_POSTS } from "@/graphql/requests/queries/Queries";
+import { QueryAllPostsArgs } from "@/graphql/generated";
 import { graphqlQuery } from "@/graphql/utils/fetch";
 import Link from "next/link";
-import LargePostCard from "@/components/blog/LargePostCard";
-import MidPostCard from "@/components/blog/MidPostCard";
 import { BsLink45Deg, BsArrowRightShort } from "react-icons/bs";
+import { QueryReturs } from "@/graphql/types";
+import PostsGrid from "@/components/blog/PostsGrid";
 
-const prodURL = "https://web-production-dff3.up.railway.app/graphql";
-const Query: Query = {};
 
 export default async function Blog() {
-  const result = await graphqlQuery<
-    QueryAllPostsArgs,
-    { posts: typeof Query.allPosts }
-  >(prodURL, POPULAR_POSTS, {
-    first: 7,
-  });
+  const result = await fetchPopularPosts();
 
   const posts = result.data.posts;
 
@@ -34,12 +27,7 @@ export default async function Blog() {
         </h2>
       </Link>
       <div className="flex flex-col gap-3 w-full">
-        <LargePostCard post={posts?.edges[0]?.node} />
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {posts?.edges.slice(1, 7).map((post) => (
-            <MidPostCard key={post?.cursor} post={post?.node} />
-          ))}
-        </ul>
+        <PostsGrid posts={posts} />
         <Link className="flex items-center group relative text-lg self-end" href="/blog">
           <span className="pr-5">See more</span>
           <span className="group-hover:text-4xl group-hover:-right-4 absolute transition-all right-0"><BsArrowRightShort /></span>
@@ -47,4 +35,12 @@ export default async function Blog() {
       </div>
     </section>
   );
+}
+
+async function fetchPopularPosts() {
+  const prodURL = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? "";
+
+  return graphqlQuery< QueryAllPostsArgs, { posts: typeof QueryReturs.allPosts } >(prodURL, POPULAR_POSTS, {
+    first: 7,
+  });
 }

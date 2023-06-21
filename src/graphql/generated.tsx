@@ -1,3 +1,5 @@
+import gql from 'graphql-tag';
+import * as Urql from 'urql';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -5,6 +7,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string | number; output: string; }
@@ -1630,10 +1633,111 @@ export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TagsQuery = { __typename?: 'Query', tags?: { __typename?: 'TagTypeConnection', edges: Array<{ __typename?: 'TagTypeEdge', cursor: string, node?: { __typename?: 'TagType', title: string, description?: string | null, category: string, id: string, tagId?: string | null } | null } | null> } | null };
 
-export type AllPostsQueryVariables = Exact<{
+export type PopularPostsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
 }>;
 
 
-export type AllPostsQuery = { __typename?: 'Query', allPosts?: { __typename?: 'PostTypeConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null }, edges: Array<{ __typename?: 'PostTypeEdge', cursor: string, node?: { __typename?: 'PostType', abstract?: string | null, title: string, views: number, postId?: string | null, readLength?: number | null, likes: number, lastUpdated: any, author: { __typename?: 'UserType', fullName?: string | null, id: string, profile?: { __typename?: 'ProfileType', image?: { __typename?: 'ImageType', url: string, description?: string | null } | null } | null }, coverPhoto?: { __typename?: 'ImageType', description?: string | null, url: string } | null } | null } | null> } | null };
+export type PopularPostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostTypeConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null }, edges: Array<{ __typename?: 'PostTypeEdge', cursor: string, node?: { __typename?: 'PostType', abstract?: string | null, title: string, views: number, postId?: string | null, readLength?: number | null, likes: number, lastUpdated: any, author: { __typename?: 'UserType', fullName?: string | null, id: string, profile?: { __typename?: 'ProfileType', image?: { __typename?: 'ImageType', url: string, description?: string | null } | null } | null }, coverPhoto?: { __typename?: 'ImageType', description?: string | null, url: string } | null } | null } | null> } | null };
+
+export type PostDetailQueryVariables = Exact<{
+  postId: Scalars['ID']['input'];
+}>;
+
+
+export type PostDetailQuery = { __typename?: 'Query', getPostById?: { __typename?: 'PostType', title: string, body: string, readLength?: number | null, lastUpdated: any, postId?: string | null, author: { __typename?: 'UserType', fullName?: string | null, profile?: { __typename?: 'ProfileType', image?: { __typename?: 'ImageType', imageId?: string | null, description?: string | null, url: string } | null } | null }, coverPhoto?: { __typename?: 'ImageType', imageId?: string | null, description?: string | null, url: string } | null } | null };
+
+
+export const TagsDocument = gql`
+    query Tags {
+  tags {
+    edges {
+      cursor
+      node {
+        title
+        description
+        category
+        id
+        tagId
+      }
+    }
+  }
+}
+    `;
+
+export function useTagsQuery(options?: Omit<Urql.UseQueryArgs<TagsQueryVariables>, 'query'>) {
+  return Urql.useQuery<TagsQuery, TagsQueryVariables>({ query: TagsDocument, ...options });
+};
+export const PopularPostsDocument = gql`
+    query PopularPosts($after: String, $first: Int) {
+  posts: popularPosts(after: $after, first: $first) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        abstract
+        author {
+          fullName
+          profile {
+            image {
+              url
+              description
+            }
+          }
+          id
+        }
+        coverPhoto {
+          description
+          url
+        }
+        title
+        views
+        postId
+        readLength
+        likes
+        lastUpdated
+      }
+    }
+  }
+}
+    `;
+
+export function usePopularPostsQuery(options?: Omit<Urql.UseQueryArgs<PopularPostsQueryVariables>, 'query'>) {
+  return Urql.useQuery<PopularPostsQuery, PopularPostsQueryVariables>({ query: PopularPostsDocument, ...options });
+};
+export const PostDetailDocument = gql`
+    query PostDetail($postId: ID!) {
+  getPostById(postId: $postId) {
+    author {
+      fullName
+      profile {
+        image {
+          imageId
+          description
+          url
+        }
+      }
+    }
+    title
+    body
+    coverPhoto {
+      imageId
+      description
+      url
+    }
+    readLength
+    lastUpdated
+    postId
+  }
+}
+    `;
+
+export function usePostDetailQuery(options: Omit<Urql.UseQueryArgs<PostDetailQueryVariables>, 'query'>) {
+  return Urql.useQuery<PostDetailQuery, PostDetailQueryVariables>({ query: PostDetailDocument, ...options });
+};
