@@ -53,8 +53,10 @@ export default function RootLayout({
       </Head>
       <MuiThemeProvider>
         <URQLProvider>
-          <body className={inter.className}>{children}</body>
-          <Analytics />
+          <body className={inter.className}>
+            {children}
+            <Analytics />
+          </body>
         </URQLProvider>
       </MuiThemeProvider>
     </html>
