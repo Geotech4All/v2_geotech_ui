@@ -1,3 +1,4 @@
+import Footer from "@/components/visitors/Footer";
 import NavBar from "@/components/visitors/navigation/NavBar";
 import React from "react";
 
@@ -13,6 +14,7 @@ export default function VisitorsLayout(props: PageProps) {
         <NavBar />
         <div className="z-0 mt-[4.4rem]">{children}</div>
       </div>
+      <Footer />
     </React.Fragment>
   )
 }

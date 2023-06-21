@@ -4,7 +4,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 
 export default function Hero() {
   return(
-    <section className="relative flex flex-col justify-center md:grid md:grid-cols-2 items-center justify-items-center z-0">
+    <header className="relative flex flex-col justify-center md:grid md:grid-cols-2 items-center justify-items-center z-0">
       <BackgroundMap />
       <div className="flex-1">
         <div className="flex flex-col gap-4 p-5">
@@ -35,7 +35,7 @@ export default function Hero() {
           />
         </div>
       </div>
-    </section>
+    </header>
   )
 }
 
