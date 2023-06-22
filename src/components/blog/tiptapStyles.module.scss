@@ -1,0 +1,43 @@
+.tiptap {
+    strong {
+        line-height: normal;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+        padding-block: 0.6rem;
+        line-height: normal;
+    }
+    h1 {
+        font-size: 2.4rem;
+        @media (min-width: 768px) {
+            font-size: 2.7rem;
+        }
+    }
+    h2 {
+        font-size: 2.1rem;
+        @media screen and (min-width: 760px) {
+            font-size: 2.4rem;
+        }
+    }
+    h3 {
+        font-size: 1.8rem;
+        @media screen and (min-width: 760px) {
+            font-size: 2.0rem;
+        }
+    }
+    h4 {
+        font-size: 1.6rem;
+        @media screen and (min-width: 760px) {
+            font-size: 1.7rem;
+        }
+    }
+    h5 {
+        font-size: 1.2rem;
+        @media screen and (min-width: 760px) {
+            font-size: 1.4rem;
+        }
+    }
+    h6 {
+        font-size: 1.1rem;
+    }
+}

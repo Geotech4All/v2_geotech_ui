@@ -10,7 +10,7 @@ interface AuthorProps {
 export default function Author(props: AuthorProps) {
   const { user, dateTime } = props;
   const date = dateTime ? new Date(dateTime) : null;
-  console.log(date);
+
   const userName =
     user?.fullName && user?.fullName !== "None None" && user.fullName !== " "
       ? user?.fullName

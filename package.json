@@ -24,6 +24,11 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.5",
     "@mui/styled-engine-sc": "^5.12.0",
+    "@tiptap/core": "^2.0.0",
+    "@tiptap/extension-font-family": "^2.0.3",
+    "@tiptap/extension-heading": "^2.0.3",
+    "@tiptap/extension-list-item": "^2.0.3",
+    "@tiptap/extension-text-style": "^2.0.3",
     "@tiptap/pm": "^2.0.3",
     "@tiptap/react": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
@@ -38,7 +43,7 @@
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "lexical": "^0.11.1",
-    "next": "^13.4.6",
+    "next": "^13.4.7",
     "postcss": "8.4.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -56,6 +61,7 @@
     "@graphql-codegen/introspection": "4.0.0",
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
-    "@graphql-codegen/typescript-urql": "^3.7.3"
+    "@graphql-codegen/typescript-urql": "^3.7.3",
+    "sass": "^1.63.6"
   }
 }

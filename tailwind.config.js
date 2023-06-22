@@ -13,6 +13,13 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         "gradient-radial-sm": "radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 65%); "
       },
+      fontFamily: {
+        "inter": ['Inter', 'sans-serif'],
+        "lobster": ["Lobster", "cursive"],
+        "montserrat": ["Montserrat", "sans-serif"],
+        "nunito": ["Nunito", "sans-serif"],
+        "pacifico": ["Pacifico", "cursive"]
+      }
     },
   },
   plugins: [],

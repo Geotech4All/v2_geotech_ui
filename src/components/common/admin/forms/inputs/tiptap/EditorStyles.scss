@@ -1,0 +1,133 @@
+editor-heading {
+  font-weight: 800;
+}
+
+h1.editor-heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+
+  @media screen and (min-width: 640px) {
+    font-size: 3rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 3.5rem
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 4rem;
+  }
+}
+
+h2.editor-heading {
+  font-size: 2.5rem;
+
+  @media screen and (min-width: 640px) {
+    font-size: 2.8rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 3.2rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 3.5rem;
+  }
+}
+
+h3.editor-heading {
+  font-size: 2rem;
+
+  @media screen and (min-width: 640px) {
+    font-size: 2.5rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 2.8rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 3rem;
+  }
+}
+
+h4.editor-heading {
+  font-size: 1.7rem;
+
+  @media screen and (min-width: 640px) {
+    font-size: 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 2.3rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
+}
+
+
+.editor-heading-h1 {
+  font-size: 4rem;
+  font-weight: 900;
+}
+.editor-heading-h2 {
+  font-size: 3.5rem;
+  font-weight: 850;
+}
+.editor-heading-h3 {
+  font-size: 3.0rem;
+  font-weight: 800;
+}
+.editor-heading-h4 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Lists */
+.editor-listItem {
+  margin-left: 1.3rem;
+  outline: none;
+}
+.editor-list-ul {
+  list-style: disc outside none;
+}
+.editor-list-ol {
+  list-style: decimal outside none;
+  margin-left: 1.3rem;
+}
+.editor-listItemUnchecked {
+  font-weight: 500;
+}
+
+li[role=checkbox] {
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 5px;
+}
+
+li[role=checkbox].editor-listItemUnchecked::before, li[role=checkbox].editor-listItemChecked::before {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+li[role=checkbox].editor-listItemUnchecked::before {
+  content: url("/unchecked.svg");
+  width: 22px;
+  height: 22px;
+}
+
+li[role=checkbox].editor-listItemChecked::before {
+  content: url("/checkbox-checked.svg");
+}
+  /* list: { */
+  /*   nested: { */
+  /*     listitem: 'editor-nested-listitem', */
+  /*   }, */
+  /*   listitemChecked: 'editor-listItemChecked', */
+  /* }, */

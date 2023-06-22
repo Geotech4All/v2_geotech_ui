@@ -2,6 +2,7 @@ import { Maybe, PostType } from "@/graphql/generated";
 import Image from "next/image";
 import Link from "next/link";
 import Author from "../common/users/Author";
+import PostReadLength from "./PostReadLength";
 
 interface PostCardProps {
   post: Maybe<PostType> | undefined;
@@ -15,8 +16,6 @@ export default function MidPostCard(props: PostCardProps) {
   const slug = `/blog/${post?.postId}-${title}`;
   const url = `${admin ? "/admin" : ""}${slug}`;
 
-  const readMinutes = parseFloat(post?.readLength?.toString() ?? "") / 60;
-  const readLength = parseInt(readMinutes.toString());
   return (
     <Link className="h-full" href={url}>
       <article className={`
@@ -38,7 +37,7 @@ export default function MidPostCard(props: PostCardProps) {
           <div className="flex flex-col relative gap-3">
             <p className="line-clamp-2">{post?.abstract}</p>
             <Author dateTime={post?.lastUpdated} user={post?.author} />
-            <em className="absolute bottom-2 right-1">{readLength} min read</em>
+            <PostReadLength readLength={post?.readLength} />
           </div>
         </div>
       </article>
