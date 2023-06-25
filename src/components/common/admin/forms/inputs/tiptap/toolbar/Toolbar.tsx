@@ -11,7 +11,7 @@ interface ToolBarProps {
 export default function ToolBar(props: ToolBarProps) {
   const { editor } = props;
   return (
-    <List className="flex max-w-95vw overflow-auto items-center" sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <List className="flex max-w-95vw rounded-xl shadow shadow-black/5 overflow-auto items-center">
       <UndoRedoTool editor={editor}/>
       <Divider />
       <TextModeTools editor={editor}/>

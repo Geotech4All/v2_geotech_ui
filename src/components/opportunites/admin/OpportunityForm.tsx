@@ -1,100 +1,172 @@
 "use client";
 import React from "react";
-import FormControl from "@mui/material/FormControl";
-import Input from "@mui/material/Input";
-import Box from "@mui/material/Box";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import { TabPanel } from "@/components/common";
+import { Tiptap } from "@/components/common/admin";
+import { SelectTags, TagQueryType, TagList } from "@/components/tag";
+import { Editor } from "@tiptap/core";
 import {
-  ExpandableSection,
-  FieldSet,
-  TextEditor,
-} from "@/components/common/admin";
+  Maybe,
+  OpportunityType,
+  useCreateUpdateOpportunityMutation,
+} from "@/graphql/generated";
+import TextField from "@mui/material/TextField";
+import { ErrorAlert, PageCircularProgress } from "@/components/common";
+import {
+  OrganizationDataType,
+  SelectOrganization,
+} from "@/components/organization";
+import { Modal, Button } from "@mui/material";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function OpportunityForm() {
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-  const [tab, setTab] = React.useState(0);
+interface OpportunityFormProps {
+  initialOpportunity?: Maybe<OpportunityType> | undefined;
+}
 
+export default function OpportunityForm(props: OpportunityFormProps) {
+  const { initialOpportunity } = props;
+  const [{ fetching, error }, saveOpportunity] =
+    useCreateUpdateOpportunityMutation();
+  const [showSelectOrg, setShowSelectOrg] = React.useState(false);
 
-  const handleExpand = (panel: string) => {
-    return function (_: React.SyntheticEvent, isExpanded: boolean) {
-      setExpanded(isExpanded ? panel : false);
-    };
+  const router = useRouter();
+
+  const [org, setOrg] = React.useState<OrganizationDataType>();
+  const [editor, setEditor] = React.useState<Editor>();
+  const titleRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const descRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
+  const [tags, setTags] = React.useState<TagQueryType[]>(() =>
+    initialOpportunity?.tags ? [...initialOpportunity.tags] : []
+  );
+
+  const toggleShowSelectOrg = () => setShowSelectOrg((curr) => !curr);
+
+  const handleSetOrg = (org: OrganizationDataType) => {
+    setOrg(org);
+    toggleShowSelectOrg();
   };
 
-  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
-    setTab(newValue);
+  const handleAddTag = (tag: TagQueryType) =>
+    setTags((curr) => {
+      const set = new Set([...curr, tag]);
+      const arr = Array.from(set);
+      return arr;
+    });
+
+  const handleRemoveTag = (tag: TagQueryType) => {
+    setTags((curr) => curr.filter((item) => item?.title !== tag?.title));
+  };
+
+  const handleGetEditor = (editor: Editor) => {
+    setEditor(editor);
+  };
+
+  const handleSaveOpportunity: React.FormEventHandler = (e) => {
+    e.preventDefault();
+    saveOpportunity({
+      title: titleRef.current.value,
+      tagIds: tags.map((tag) => tag?.tagId ?? ""),
+      content: editor?.getHTML(),
+      opportunityId: initialOpportunity?.opportunityId,
+      organizationId: org?.organizationId,
+      description: descRef.current.value,
+    }).then((res) => {
+      if (!res.error) {
+        router.replace("/admin/opportunities");
+      }
+    });
   };
 
   return (
-    <FormControl className="flex flex-col gap-3" fullWidth>
-      <fieldset className="bg-white rounded-t-md shadow overflow-hidden">
-        <Input
-          fullWidth
-          size="small"
-          title="Title"
-          placeholder="A new opportunity"
-          className="bg-white p-2 px-3 text-black/70 md:text-3xl text-2xl font-[1000]"
-        />
-      </fieldset>
-      <fieldset className="shadow flex flex-col gap-2 p-3 bg-white rounded-md">
-        <Box sx={{ width: "100%" }}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={tab}
-              onChange={handleTabChange}
-              aria-label="Opportunity form fields"
+    <React.Fragment>
+      <form
+        onSubmit={handleSaveOpportunity}
+        className="flex items-center flex-col gap-2 w-full"
+      >
+        <ErrorAlert error={error} />
+        <div className="max-w-4xl flex flex-col gap-9 w-full">
+          <fieldset className="flex flex-col gap-5">
+            <input
+              ref={titleRef}
+              placeholder="Title"
+              defaultValue={initialOpportunity?.title}
+              className="w-full md:text-5xl lg:text-7xl text-4xl font-extrabold outline-none"
+            />
+          </fieldset>
+          <fieldset className="flex w-full flex-col gap-2">
+            <legend className="text-black/60 text-sm italic mb-1">
+              (Optional) Tags
+            </legend>
+            <TagList handleRemove={handleRemoveTag} tags={tags} />
+            <SelectTags handleSelect={handleAddTag} />
+          </fieldset>
+          <fieldset className="flex flex-col gap-2">
+            <legend className="text-sm mb-1 italic text-black/50">
+              (Optiona) Organization
+            </legend>
+            <div className="flex items-center text-xl font-semibold gap-2">
+              <Image
+                width={50}
+                height={50}
+                className={`rounded-full aspect-square object-cover border ${
+                  !org ? "opacity-50" : ""
+                }`}
+                alt={org ? org.logo?.description ?? "" : "/logo placeholder"}
+                src={org ? org.logo?.url ?? "" : "/image_placeholder.svg"}
+              />
+              <p className={`${!org ? "italic opacity-50" : ""}`}>
+                {org?.name ?? "Organization name"}
+              </p>
+            </div>
+            <Button
+              type="button"
+              color={org ? "warning" : "success"}
+              variant="outlined"
+              className="w-fit self-end"
+              onClick={toggleShowSelectOrg}
             >
-              <Tab label={OpportunityFormTabs[0]} {...formTabProps(0)} />
-              <Tab label={OpportunityFormTabs[1]} {...formTabProps(1)} />
-            </Tabs>
-          </Box>
-          <TabPanel value={tab} index={0}>
-            <FieldSet>
-              <ExpandableSection
-                onChange={handleExpand("description")}
-                expanded={expanded === "description"}
-                label="Description"
-                toolTip="Make it straight forward and uder 500 words"
-              >
-                <TextField
-                  variant="filled"
-                  placeholder="Job title / internship at Company"
-                  rows={7}
-                  multiline
-                  fullWidth
-                />
-              </ExpandableSection>
-              <ExpandableSection
-                onChange={handleExpand("details")}
-                expanded={expanded === "details"}
-                label="Details"
-              >
-                <TextEditor />
-              </ExpandableSection>
-            </FieldSet>
-          </TabPanel>
-        </Box>
-      </fieldset>
-      <Button className="bg-black" type="submit" variant="contained">
-      Save
-      </Button>
-    </FormControl>
+              {org ? "Edit" : "Add"} Organization
+            </Button>
+          </fieldset>
+          <fieldset className="flex flex-col">
+            <legend className="italic text-sm mb-1 text-black/50">
+              Summary
+            </legend>
+            <TextField
+              rows={3}
+              multiline
+              fullWidth
+              inputRef={descRef}
+              className="resize-none"
+              placeholder="An opportunity at company"
+            />
+          </fieldset>
+          <fieldset>
+            <legend className="text-sm text-black/50 italic mb-1">
+              Content
+            </legend>
+            <Tiptap
+              initialContent={initialOpportunity?.content ?? ""}
+              getEditor={handleGetEditor}
+            />
+          </fieldset>
+          <Button
+            type="submit"
+            color="success"
+            variant="contained"
+            className="w-full bg-green-600 self-end"
+          >
+            Save
+          </Button>
+        </div>
+      </form>
+      <PageCircularProgress show={fetching} />
+      <Modal
+        className="flex flex-col p-2 items-center justify-center"
+        onClose={toggleShowSelectOrg}
+        open={showSelectOrg}
+      >
+        <SelectOrganization onSelectOrg={handleSetOrg} />
+      </Modal>
+    </React.Fragment>
   );
-}
-
-function formTabProps(index: number) {
-  const tab = OpportunityFormTabs[index];
-  return {
-    id: `opportunity-${tab}-tab`,
-    "aria-controls": `opportunity-${tab}-pannel`,
-  };
-}
-
-enum OpportunityFormTabs {
-  Content,
-  Organization,
 }

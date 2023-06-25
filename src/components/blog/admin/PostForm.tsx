@@ -1,4 +1,4 @@
-import Tiptap from "@/components/common/admin/forms/inputs/tiptap/Tiptap";
+import { Tiptap } from "@/components/common/admin";
 
 export default function PostForm() {
   return (

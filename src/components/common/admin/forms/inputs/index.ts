@@ -1,3 +1,3 @@
-import TextEditor from "./TextEditor";
+import Tiptap from "./tiptap/Tiptap";
 
-export { TextEditor };
+export { Tiptap };

@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import MuiThemeProvider from "./MuiThemeProvider";
 import URQLProvider from "./URQLProvider";
 import { Analytics } from "@vercel/analytics/react";
+import ReducProvider from "./ReduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,8 +15,8 @@ export const metadata = {
     icon: {
       rel: "icon",
       type: "image/svg",
-      url: "/icon.svg"
-    }
+      url: "/icon.svg",
+    },
   },
   openGraph: {
     type: "website",
@@ -37,8 +38,8 @@ export const metadata = {
   },
   viewport: {
     width: "device-width",
-    initialScale: 1
-  }
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
@@ -49,12 +50,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <MuiThemeProvider>
-        <URQLProvider>
-          <body className={inter.className}>
-            {children}
-            <Analytics />
-          </body>
-        </URQLProvider>
+        <ReducProvider>
+          <URQLProvider>
+            <body className={inter.className}>
+              {children}
+              <Analytics />
+            </body>
+          </URQLProvider>
+        </ReducProvider>
       </MuiThemeProvider>
     </html>
   );

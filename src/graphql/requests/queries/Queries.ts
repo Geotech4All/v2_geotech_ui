@@ -8,7 +8,6 @@ export const TAGS = gql`query Tags {
         title
         description
         category
-        id
         tagId
       }
     }
@@ -116,6 +115,27 @@ export const POST_DETAIL = gql`
       readLength
       lastUpdated
       postId
+    }
+  }
+`
+
+export const IMAGES = gql`
+  query Images($after: String, $first: Int, $descriptionIstartswith: String, $description: String, $descriptionIcontains: String) {
+    images(after: $after, first: $first, description_Istartswith: $descriptionIstartswith, description: $description, description_Icontains: $descriptionIcontains) {
+      edges {
+        cursor
+        node {
+          description
+          url
+          imageId
+        }
+      }
+      pageInfo {
+        hasNextPage
+        startCursor
+        endCursor
+        hasPreviousPage
+      }
     }
   }
 `

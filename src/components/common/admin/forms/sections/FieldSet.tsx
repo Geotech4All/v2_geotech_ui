@@ -1,12 +1,15 @@
 import React from "react";
 
-interface FieldSetProps {
+interface FieldSetProps
+  extends React.FieldsetHTMLAttributes<HTMLFieldSetElement> {
   children?: React.ReactNode;
 }
 
 export default function FieldSet(props: FieldSetProps) {
-  const { children } = props;
+  const { children, className, ...rest } = props;
   return (
-    <fieldset className="border border-black/5 overflow-hidden rounded-md">{children}</fieldset>
+    <fieldset {...rest} className={`overflow-hidden rounded-md ${className}`}>
+      {children}
+    </fieldset>
   );
 }
