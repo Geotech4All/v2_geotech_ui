@@ -139,3 +139,50 @@ export const IMAGES = gql`
     }
   }
 `
+
+export const OPPORTUNITIES = gql`
+  query Opportunities($after: String, $first: Int, $tagsIdIn: [String], $locationId: Float, $datePosted: OpportunityDates, $titleIcontains: String) {
+    opportunities(after: $after, first: $first, tags_Id_In: $tagsIdIn, location_Id: $locationId, datePosted: $datePosted, title_Icontains: $titleIcontains) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          content
+          description
+          lastUpdated
+          location {
+            address
+            country
+            lastUpdated
+            locationId
+            state
+            zipCode
+          }
+          opportunityId
+          title
+          tags {
+            title
+            description
+            category
+            tagId
+          }
+          organization {
+            description
+            organizationId
+            name
+            logo {
+              description
+              url
+              imageId
+            }
+          }
+        }
+      }
+    }
+  }
+`

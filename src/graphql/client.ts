@@ -13,6 +13,12 @@ const client = new Client({
 
       return {
         addAuthToOperation(operation) {
+          if (typeof window !== "undefined") {
+            const paths = window.location.pathname.split("/")
+            if (paths[1] !== "admin") {
+              return operation
+            }
+          }
           if (!tokens?.token) return operation;
           return utils.appendHeaders(operation, {
             Authorization: `JWT ${tokens.token}`,
