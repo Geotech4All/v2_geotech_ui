@@ -11,7 +11,7 @@ interface OpportunityListProps {
 
 export default function OpportunityList(props: OpportunityListProps) {
   const { opportunities, admin } = props;
-  console.log({ opportunities });
+
   return (
     <React.Fragment>
       {opportunities?.length && opportunities.length > 0 ? (
