@@ -22,7 +22,7 @@ export default function AdminLink(props: URLType) {
     >
       <span
         className={`
-        ${isCurrentPath ? "bg-black text-white" : ""}
+        ${isCurrentPath ? "bg-black text-white shadow" : ""}
         aspect-square rounded-full text-2xl p-2.5 group-hover:bg-black
         group-hover:text-white transition-all duration-300 group-hover:shadow-lg
       `}
@@ -59,7 +59,7 @@ function NavLinkText(props: LinkTextProps) {
   return (
     <span
       className={`
-        ${isCurrentPath ? "bg-black/60 text-white" : ""}
+        ${isCurrentPath ? "bg-black/60 text-white shadow" : ""}
         group-hover:bg-black/20 p-2 rounded-3xl px-4 transition-all duration-300
         w-full group-hover:shadow-lg ${className}
       `}

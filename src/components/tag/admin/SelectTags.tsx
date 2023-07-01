@@ -3,42 +3,34 @@ import React from "react";
 import Modal from "@mui/material/Modal";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TagForm } from "@/components/tag";
-import { Maybe, TagType, useTagsQuery } from "@/graphql/generated";
+import { useTagsQuery } from "@/graphql/generated";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Tooltip from "@mui/material/Tooltip";
-
-
-export type TagQueryType = {
-  __typename?: "TagType";
-  title: string;
-  description?: string | null;
-  category?: string | null;
-  tagId?: string | null;
-} | null | undefined;
+import { TagDataType } from "../types";
 
 
 interface SelectTagsProps {
-  handleSelect: (selected: TagQueryType) => void;
+  handleSelect: (selected: TagDataType) => void;
 }
 
 export default function SelectTags(props: SelectTagsProps) {
   const { handleSelect } = props;
   const [tagFormOpen, setTagFormOpen] = React.useState(false);
   const [{ data }, refetch] = useTagsQuery();
-  const [tags, setTags] = React.useState<TagQueryType[]>([])
+  const [tags, setTags] = React.useState<TagDataType[]>([])
 
   React.useEffect(() => {
     const tags = data?.tags?.edges.map(edge => edge?.node)
     setTags(tags ?? [])
   }, [data])
 
-  const handleNewTag = (_: Maybe<TagType> | undefined) => {
+  const handleNewTag = (_: TagDataType | undefined) => {
     refetch()
     toggleTagForm()
   }
 
-  const handleChange = (_e: React.SyntheticEvent<Element, Event>, newValue: TagQueryType ) => {
+  const handleChange = (_e: React.SyntheticEvent<Element, Event>, newValue: TagDataType ) => {
     handleSelect(newValue)
   }
 
