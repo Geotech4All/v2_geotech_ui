@@ -1,20 +1,22 @@
 "use client";
 import { TransitionAlert } from "@/components/common";
 import PageCircularProgress from "@/components/common/loading/PageCicularProgress";
-import { Maybe, TagType, useCreateUpdateTagMutation } from "@/graphql/generated";
+import { TagType, useTagCreateUpdateMutation } from "@/graphql/generated";
 import Button from "@mui/material/Button";
 import React from "react";
+import { TagDataType } from "../types";
+
 
 interface TagFormProps {
   initialValue?: TagType;
-  onSuccess?: (tag: Maybe<TagType> | undefined) => void;
+  onSuccess?: (tag: TagDataType) => void;
 }
 
 export default function TagForm(props: TagFormProps) {
   const { initialValue, onSuccess } = props;
   const titleRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const descRef = React.useRef() as React.MutableRefObject<HTMLTextAreaElement>;
-  const [{ fetching, error }, saveTag] = useCreateUpdateTagMutation()
+  const [{ fetching, error }, saveTag] = useTagCreateUpdateMutation()
 
   const handleSaveTag: React.FormEventHandler = (e) => {
     e.preventDefault();
@@ -23,8 +25,8 @@ export default function TagForm(props: TagFormProps) {
       title: titleRef.current.value,
       description: descRef.current.value,
     }).then(res => {
-      if (res.data?.success && onSuccess) {
-        onSuccess(res.data.tag)
+      if (res.data?.createUpdateTag?.success && onSuccess) {
+        onSuccess(res.data.createUpdateTag.tag)
       }
     })
   }
