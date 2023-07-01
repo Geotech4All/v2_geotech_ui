@@ -1,9 +1,9 @@
+import { VisitorNavLayout } from "@/components/visitors";
 import Footer from "@/components/visitors/Footer";
-import NavBar from "@/components/visitors/navigation/NavBar";
 import React from "react";
 
 interface PageProps {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export default function VisitorsLayout(props: PageProps) {
@@ -11,10 +11,11 @@ export default function VisitorsLayout(props: PageProps) {
   return (
     <React.Fragment>
       <div className="z-0">
-        <NavBar />
-        <div className="z-0 mt-[4.4rem]">{children}</div>
+        <VisitorNavLayout>
+          {children}
+        </VisitorNavLayout>
       </div>
       <Footer />
     </React.Fragment>
-  )
+  );
 }

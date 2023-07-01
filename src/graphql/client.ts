@@ -26,12 +26,7 @@ const client = new Client({
         },
         didAuthError(error, _operation) {
           return error.graphQLErrors.some(
-            (e) => {
-              if (e.message === "Signature has expired") {
-                return true;
-              }
-              return false;
-            }
+            (e) => e.message && e.message === "Signature has expired"
           );
         },
         async refreshAuth() {

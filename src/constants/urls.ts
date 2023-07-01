@@ -4,6 +4,7 @@ import { BsPostcard } from "react-icons/bs";
 import { SiGooglepodcasts } from "react-icons/si";
 import { HiBriefcase } from "react-icons/hi";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
 export interface URLType {
   name: string;
@@ -49,5 +50,28 @@ export const socialLinks: URLType[] = [
     name: "LinkedIn",
     href: "https://www.linkedin.com/company/geotech4all/",
     icon: FaLinkedinIn
+  }
+]
+
+export const adminUrls: URLType[] = [
+  {
+    name: "DashBoard",
+    href: "/admin/dashboard",
+    icon: MdDashboard
+  },
+  {
+    name: "Blog",
+    href: "/admin/blog",
+    icon: BsPostcard
+  },
+  {
+    name: "Podcast",
+    href: "/admin/podcast",
+    icon: SiGooglepodcasts
+  },
+  {
+    name: "Opportunities",
+    href: "/admin/opportunities",
+    icon: HiBriefcase
   }
 ]

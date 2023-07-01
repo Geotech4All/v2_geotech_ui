@@ -1,3 +1,4 @@
 import AuthLayout from "./AuthLayout";
+import AdminNavLayout from "./AdminNavLayout";
 
-export { AuthLayout };
+export { AuthLayout, AdminNavLayout };
