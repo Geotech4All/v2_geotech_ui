@@ -34,8 +34,9 @@ export default function Opportunites() {
   };
 
   React.useEffect(() => {
-    if (data?.opportunities?.edges)
-      setOpportunities([...data?.opportunities?.edges]);
+    if (data?.opportunities?.edges) {
+      setOpportunities([...data.opportunities.edges]);
+    }
   }, [data]);
 
   return (

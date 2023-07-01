@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { store } from "@/redux/config";
 import { Provider } from "react-redux";
 

@@ -1,13 +1,17 @@
 "use client";
+import React from "react";
 import { ImageListItem, ImageListItemBar } from "@mui/material";
 import Image from "next/image";
 
-export type ImageDataType = {
-  __typename?: "ImageType" | undefined;
-  description?: string | null | undefined;
-  url: string;
-  imageId?: string | null | undefined;
-} | null | undefined
+export type ImageDataType =
+  | {
+    __typename?: "ImageType" | undefined;
+    description?: string | null | undefined;
+    url: string;
+    imageId?: string | null | undefined;
+  }
+  | null
+  | undefined;
 
 interface ImagePickerItemProps {
   image: ImageDataType;
@@ -19,11 +23,11 @@ export default function ImagePickerItem(props: ImagePickerItemProps) {
 
   const handleClick: React.MouseEventHandler = () => {
     onSelect(image);
-  }
+  };
 
   const handleKeyDown: React.KeyboardEventHandler = () => {
     onSelect(image);
-  }
+  };
 
   return (
     <button type="button" onClick={handleClick} onKeyDown={handleKeyDown}>
@@ -37,5 +41,5 @@ export default function ImagePickerItem(props: ImagePickerItemProps) {
         <ImageListItemBar className="line-clamp-2" title={image?.description} />
       </ImageListItem>
     </button>
-  )
+  );
 }
