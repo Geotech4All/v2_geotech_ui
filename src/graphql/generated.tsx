@@ -1608,7 +1608,7 @@ export type VerifyToken = {
   success?: Maybe<Scalars['Boolean']['output']>;
 };
 
-export type CreateUpdateTagMutationVariables = Exact<{
+export type TagCreateUpdateMutationVariables = Exact<{
   category?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   tagId?: InputMaybe<Scalars['ID']['input']>;
@@ -1616,7 +1616,7 @@ export type CreateUpdateTagMutationVariables = Exact<{
 }>;
 
 
-export type CreateUpdateTagMutation = { __typename?: 'Mutation', createUpdateTag?: { __typename?: 'CreateUpdateTagMutation', success?: boolean | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null, tag?: { __typename?: 'TagType', tagId?: string | null, title: string, description?: string | null } | null } | null };
+export type TagCreateUpdateMutation = { __typename?: 'Mutation', createUpdateTag?: { __typename?: 'CreateUpdateTagMutation', success?: boolean | null, errors?: Array<{ __typename?: 'ErrorType', field: string, messages: Array<string> } | null> | null, tag?: { __typename?: 'TagType', tagId?: string | null, title: string, description?: string | null } | null } | null };
 
 export type CreateUpdateOrganizationMutationVariables = Exact<{
   description?: InputMaybe<Scalars['String']['input']>;
@@ -1731,8 +1731,8 @@ export type OpportunitiesQueryVariables = Exact<{
 export type OpportunitiesQuery = { __typename?: 'Query', opportunities?: { __typename?: 'OpportunityTypeConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null, endCursor?: string | null }, edges: Array<{ __typename?: 'OpportunityTypeEdge', cursor: string, node?: { __typename?: 'OpportunityType', content?: string | null, description?: string | null, lastUpdated: any, opportunityId?: string | null, title: string, location?: { __typename?: 'LocationType', address?: string | null, country?: string | null, lastUpdated?: any | null, locationId?: string | null, state?: string | null, zipCode?: string | null } | null, tags?: Array<{ __typename?: 'TagType', title: string, description?: string | null, category?: string | null, tagId?: string | null } | null> | null, organization?: { __typename?: 'OrganizationType', description?: string | null, organizationId?: string | null, name: string, logo?: { __typename?: 'ImageType', description?: string | null, url: string, imageId?: string | null } | null } | null } | null } | null> } | null };
 
 
-export const CreateUpdateTagDocument = gql`
-    mutation CreateUpdateTag($category: String, $description: String, $tagId: ID, $title: String) {
+export const TagCreateUpdateDocument = gql`
+    mutation TagCreateUpdate($category: String, $description: String, $tagId: ID, $title: String) {
   createUpdateTag(
     category: $category
     description: $description
@@ -1753,8 +1753,8 @@ export const CreateUpdateTagDocument = gql`
 }
     `;
 
-export function useCreateUpdateTagMutation() {
-  return Urql.useMutation<CreateUpdateTagMutation, CreateUpdateTagMutationVariables>(CreateUpdateTagDocument);
+export function useTagCreateUpdateMutation() {
+  return Urql.useMutation<TagCreateUpdateMutation, TagCreateUpdateMutationVariables>(TagCreateUpdateDocument);
 };
 export const CreateUpdateOrganizationDocument = gql`
     mutation CreateUpdateOrganization($description: String, $logoId: ID, $name: String, $organizationId: ID) {

@@ -1,7 +1,7 @@
 import { gql } from "urql";
 
 export const CREATE_UPDATE_TAG = gql`
-  mutation CreateUpdateTag($category: String, $description: String, $tagId: ID, $title: String) {
+  mutation TagCreateUpdate($category: String, $description: String, $tagId: ID, $title: String) {
     createUpdateTag (category: $category, description: $description, tagId: $tagId, title: $title) {
       errors {
         field
