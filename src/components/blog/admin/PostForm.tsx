@@ -6,8 +6,6 @@ import { Editor } from "@tiptap/core";
 export default function PostForm() {
   const [editor, setEditor] = React.useState<Editor>()
   const getEditor = (editor: Editor) => setEditor(editor);
-
-  const 
   return (
     <form>
       <Tiptap getEditor={getEditor}/>

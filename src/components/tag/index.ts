@@ -1,7 +1,7 @@
 export * from "./admin";
 import TagList from "./TagsList";
-import type { TagNodeType } from "./types";
+import type { TagNodeDataType } from "./types";
 
 export { TagList };
 
-export type { TagNodeType };
+export type { TagNodeDataType };
