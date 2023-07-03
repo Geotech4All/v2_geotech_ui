@@ -16,18 +16,24 @@ export default async function BlogPage() {
       </section>
       <section>
         <h2 className="font-bold text-lg">Latest</h2>
-        <PostList initialPosts={posts.latest}/>
+        <PostList initialPosts={posts.latest} />
       </section>
     </Page>
-  )
+  );
 }
 
 async function getBlogPosts() {
-  const url = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? ""
-  const popularPosts = await graphqlQuery<QueryPopularPostsArgs, { posts: typeof QueryReturs.popularPosts}>(url, POPULAR_POSTS, { first: 7 })
-  const latestPosts = await graphqlQuery<QueryAllPostsArgs, { posts: typeof QueryReturs.allPosts}>(url, ALL_POSTS, { first: 20 })
+  const url = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? "";
+  const popularPosts = await graphqlQuery<
+    QueryPopularPostsArgs,
+    { posts: typeof QueryReturs.popularPosts }
+  >(url, POPULAR_POSTS, { first: 7 });
+  const latestPosts = await graphqlQuery<
+    QueryAllPostsArgs,
+    { posts: typeof QueryReturs.allPosts }
+  >(url, ALL_POSTS, { first: 20 });
   return {
     popular: popularPosts.data.posts,
-    latest: latestPosts.data.posts
-  }
+    latest: latestPosts.data.posts,
+  };
 }

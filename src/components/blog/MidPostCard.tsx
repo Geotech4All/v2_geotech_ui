@@ -1,11 +1,11 @@
-import { Maybe, PostType } from "@/graphql/generated";
 import Image from "next/image";
 import Link from "next/link";
 import Author from "../common/users/Author";
 import PostReadLength from "./PostReadLength";
+import { PostNodeDataType } from "./types";
 
 interface PostCardProps {
-  post: Maybe<PostType> | undefined;
+  post: PostNodeDataType;
   admin?: boolean;
 }
 
@@ -18,11 +18,13 @@ export default function MidPostCard(props: PostCardProps) {
 
   return (
     <Link className="h-full" href={url}>
-      <article className={`
+      <article
+        className={`
         flex flex-col gap-3 h-full hover:shadow-md hover:shadow-black/20 hover:rounded-lg
         transition-all duration-300 shadow shadow-black/5 rounded
         overflow-hidden
-      `}>
+      `}
+      >
         <div className="rounded flex-1 overflow-hidden">
           <Image
             width={400}

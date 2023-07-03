@@ -1,18 +1,20 @@
 import { gql } from "graphql-tag";
 
-export const TAGS = gql`query Tags {
-  tags {
-    edges {
-      cursor
-      node {
-        title
-        description
-        category
-        tagId
+export const TAGS = gql`
+  query Tags {
+    tags {
+      edges {
+        cursor
+        node {
+          title
+          description
+          category
+          tagId
+        }
       }
     }
   }
-}`
+`;
 
 export const POPULAR_POSTS = gql`
   query PopularPosts($after: String, $first: Int) {
@@ -51,10 +53,10 @@ export const POPULAR_POSTS = gql`
       }
     }
   }
-`
+`;
 
 export const ALL_POSTS = gql`
-  query PopularPosts($after: String, $first: Int) {
+  query AllPosts($after: String, $first: Int) {
     posts: popularPosts(after: $after, first: $first) {
       pageInfo {
         hasNextPage
@@ -90,7 +92,7 @@ export const ALL_POSTS = gql`
       }
     }
   }
-`
+`;
 
 export const POST_DETAIL = gql`
   query PostDetail ($postId: ID!) {
@@ -117,7 +119,7 @@ export const POST_DETAIL = gql`
       postId
     }
   }
-`
+`;
 
 export const IMAGES = gql`
   query Images($after: String, $first: Int, $descriptionIstartswith: String, $description: String, $descriptionIcontains: String) {
@@ -138,7 +140,7 @@ export const IMAGES = gql`
       }
     }
   }
-`
+`;
 
 export const OPPORTUNITIES = gql`
   query Opportunities($after: String, $first: Int, $tagsIdIn: [String], $locationId: Float, $datePosted: OpportunityDates, $titleIcontains: String) {
@@ -185,4 +187,4 @@ export const OPPORTUNITIES = gql`
       }
     }
   }
-`
+`;

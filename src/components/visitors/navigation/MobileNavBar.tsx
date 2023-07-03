@@ -1,18 +1,29 @@
 "use client";
-import Image from "next/image";
 import React from "react";
-import { BsMenuDown } from "react-icons/bs";
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
+import { BiMenuAltLeft } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
+import { visitoUrls } from "@/constants/urls";
+import MobileLink from "./MobileLink";
 
 export default function MobileNavBar() {
   const [navOpen, setNavOpen] = React.useState(false);
   const toggleNav = () => setNavOpen((curr) => !curr);
   return (
-    <nav className="fixed top-0 w-screen shadow">
-      <div className="flex items-center relative justify-center">
-        <button className="absolute" onClick={toggleNav}>
-          {navOpen ? <MdClose /> : <BsMenuDown />}
-        </button>
+    <React.Fragment>
+      <motion.nav
+        animate={{
+          height: navOpen ? "13rem" : "2.7rem",
+          borderBottomRightRadius: navOpen ? "1rem" : "0rem",
+          borderBottomLeftRadius: navOpen ? "1rem" : "0rem",
+        }}
+        className="fixed top-0 z-20 overflow-hidden w-screen shadow bg-white"
+      >
+        <div className="flex shadow-md items-center p-2 relative justify-center">
+          <button className="absolute left-3 text-2xl" onClick={toggleNav}>
+            {navOpen ? <MdClose /> : <BiMenuAltLeft />}
+          </button>
           <Image
             className="self-center"
             src="/logo.svg"
@@ -20,9 +31,25 @@ export default function MobileNavBar() {
             width={200}
             height={50}
           />
-      </div>
-      <div className="relative h-full w-full">
-      </div>
-    </nav>
+        </div>
+        <div className="relative h-full w-full">
+          <ul className="p-2 flex flex-col gap-0.5">
+            {visitoUrls.map((url) => <MobileLink key={url.href} url={url} onClick={toggleNav} />)}
+          </ul>
+        </div>
+      </motion.nav>
+      <AnimatePresence>
+        {navOpen && (
+          <motion.div
+            onClick={toggleNav}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            key={Math.random()}
+            className="fixed z-10 inset-0 bg-black/10"
+          />
+        )}
+      </AnimatePresence>
+    </React.Fragment>
   );
 }

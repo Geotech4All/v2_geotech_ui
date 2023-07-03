@@ -1,4 +1,5 @@
 import "./globals.css";
+import React from "react";
 import { Inter } from "next/font/google";
 import MuiThemeProvider from "./MuiThemeProvider";
 import URQLProvider from "./URQLProvider";
