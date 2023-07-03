@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Tiptap } from "@/components/common/admin";
-import { SelectTags, TagQueryType, TagList } from "@/components/tag";
+import { SelectTags, TagList, TagNodeDataType } from "@/components/tag";
 import { Editor } from "@tiptap/core";
 import {
   Maybe,
@@ -34,7 +34,7 @@ export default function OpportunityForm(props: OpportunityFormProps) {
   const [editor, setEditor] = React.useState<Editor>();
   const titleRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const descRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
-  const [tags, setTags] = React.useState<TagQueryType[]>(() =>
+  const [tags, setTags] = React.useState<TagNodeDataType[]>(() =>
     initialOpportunity?.tags ? [...initialOpportunity.tags] : []
   );
 
@@ -45,14 +45,14 @@ export default function OpportunityForm(props: OpportunityFormProps) {
     toggleShowSelectOrg();
   };
 
-  const handleAddTag = (tag: TagQueryType) =>
+  const handleAddTag = (tag: TagNodeDataType) =>
     setTags((curr) => {
       const set = new Set([...curr, tag]);
       const arr = Array.from(set);
       return arr;
     });
 
-  const handleRemoveTag = (tag: TagQueryType) => {
+  const handleRemoveTag = (tag: TagNodeDataType) => {
     setTags((curr) => curr.filter((item) => item?.title !== tag?.title));
   };
 
