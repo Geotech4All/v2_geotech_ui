@@ -48,7 +48,7 @@ export default function Opportunites() {
           onTagChange={handleUpdateTag}
           tags={tags}
         />
-        <div className="flex-1 flex flex-col gap-3">
+        <div className="flex-1 md:ml-[21rem] flex flex-col gap-3">
           <Search onSearch={handleChangeTitle} />
           <OpportunityList opportunities={opportunities} />
         </div>
