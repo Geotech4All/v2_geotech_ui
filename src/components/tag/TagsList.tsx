@@ -1,8 +1,8 @@
-import { TagQueryType } from "./admin";
+import type { TagNodeDataType } from "./types";
 
 interface TagsListProps {
-  tags: TagQueryType[];
-  handleRemove: (tag: TagQueryType) => void;
+  tags: TagNodeDataType[];
+  handleRemove: (tag: TagNodeDataType) => void;
 }
 
 export default function TagList(props: TagsListProps) {
@@ -21,8 +21,8 @@ export default function TagList(props: TagsListProps) {
 }
 
 interface TagButtonProps {
-  tag: TagQueryType;
-  handleRemove: (tag: TagQueryType) => void;
+  tag: TagNodeDataType;
+  handleRemove: (tag: TagNodeDataType) => void;
 }
 
 function TagButton(props: TagButtonProps) {
