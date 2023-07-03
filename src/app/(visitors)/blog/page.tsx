@@ -9,14 +9,14 @@ import { graphqlQuery } from "@/graphql/utils/fetch";
 export default async function BlogPage() {
   const posts = await getBlogPosts();
   return (
-    <Page className="lg:px-32 flex flex-col gap-5">
+    <Page id="post_page" className="lg:px-32 flex flex-col gap-5">
       <section className="flex flex-col gap-3">
         <h2 className="font-bold text-lg">Popular</h2>
         <PostsGrid posts={posts.popular} />
       </section>
-      <section>
-        <h2 className="font-bold text-lg">Latest</h2>
-        <PostList initialPosts={posts.latest} />
+      <section className="flex flex-col mt-4">
+        <h2 className="font-bold font-nunito mb-2 text-xl">Latest</h2>
+        <PostList />
       </section>
     </Page>
   );

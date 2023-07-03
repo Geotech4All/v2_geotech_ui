@@ -10,7 +10,7 @@ export default function VisitorsLayout(props: PageProps) {
   const { children } = props;
   return (
     <React.Fragment>
-      <div className="z-0">
+      <div id="__main" className="z-0">
         <VisitorNavLayout>
           {children}
         </VisitorNavLayout>
