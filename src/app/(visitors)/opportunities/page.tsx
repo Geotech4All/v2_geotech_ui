@@ -1,29 +1,28 @@
 "use client";
-import { Page } from "@/components/common";
-import { Filter, OpportunityList, Search } from "@/components/opportunites";
-import { OpportunityEdgeDataType } from "@/components/opportunites/types";
+import { ErrorAlert, Page } from "@/components/common";
+import {
+  Filter,
+  OpportunityList,
+  Search,
+  usePaginatedOpportunites,
+} from "@/components/opportunites";
 import { TagEdgeDataType } from "@/components/tag/types";
-import { OpportunityDates, useOpportunitiesQuery } from "@/graphql/generated";
+import { OpportunityDates } from "@/graphql/generated";
 import React from "react";
 
 export default function Opportunites() {
   const [title, setTitle] = React.useState<string>();
   const [tags, setTags] = React.useState<TagEdgeDataType[]>([]);
   const [datePosted, setDatePosted] = React.useState<OpportunityDates>(
-    OpportunityDates.AnyTime
+    OpportunityDates.AnyTime,
   );
-  const [{ data }] = useOpportunitiesQuery({
-    variables: {
-      tagsIdIn: tags.map((tag) => tag?.node?.tagId ?? ""),
-      datePosted,
-      titleIcontains: title,
-    },
+  const { items, error } = usePaginatedOpportunites({
+    datePosted,
+    title_Icontains: title,
+    tags_Id_In: tags.map((tag) => tag?.node?.tagId ?? ""),
   });
 
-  const [opportunities, setOpportunities] =
-    React.useState<OpportunityEdgeDataType>([]);
-
-  const handleChangeTitle = (title?: string) => setTitle(title)
+  const handleChangeTitle = (title?: string) => setTitle(title);
 
   const handleUpdateTag = (tags: TagEdgeDataType[]) => {
     setTags(tags);
@@ -33,11 +32,7 @@ export default function Opportunites() {
     setDatePosted(date);
   };
 
-  React.useEffect(() => {
-    if (data?.opportunities?.edges) {
-      setOpportunities([...data.opportunities.edges]);
-    }
-  }, [data]);
+  console.log(error?.message)
 
   return (
     <Page>
@@ -50,7 +45,8 @@ export default function Opportunites() {
         />
         <div className="flex-1 md:ml-[21rem] flex flex-col gap-3">
           <Search onSearch={handleChangeTitle} />
-          <OpportunityList opportunities={opportunities} />
+          {error && <ErrorAlert error={error.message} />}
+          {!error && <OpportunityList opportunities={items} />}
         </div>
       </div>
     </Page>

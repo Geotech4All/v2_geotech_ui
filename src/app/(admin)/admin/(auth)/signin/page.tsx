@@ -39,20 +39,24 @@ export default function AdminSignIn() {
       password: passRef.current.value,
     }).then((res) => {
       if (res.data?.tokenAuth?.success === true) {
-        // Set the current logged in user
-        dispatch(setUser(res.data.tokenAuth.user))
+        if (res.data.tokenAuth.user?.staff) {
+          // Set the current logged in user
+          dispatch(setUser(res.data.tokenAuth.user));
 
-        // Update the user's tokens
-        const token = res.data.tokenAuth.token ?? ""
-        const refreshToken = res.data.tokenAuth.refreshToken ?? ""
-        setTokens(token, refreshToken);
+          // Update the user's tokens
+          const token = res.data.tokenAuth.token ?? "";
+          const refreshToken = res.data.tokenAuth.refreshToken ?? "";
+          setTokens(token, refreshToken);
 
-        // Send the user to the admin dashboard
-        router.replace("/admin/dashboard");
+          // Send the user to the admin dashboard
+          router.replace("/admin/dashboard");
+        } else {
+          setLoginError("Sorry you do not have staff privilages");
+        }
       } else {
-        setLoginError(res.data?.tokenAuth?.errors)
+        setLoginError(res.data?.tokenAuth?.errors);
         if (typeof window !== "undefined") {
-          localStorage.clear()
+          localStorage.clear();
         }
       }
     });

@@ -73,16 +73,18 @@ export default function Filter(props: FilterProps) {
         className="border z-0 fixed h-fit max-w-xs bg-white w-full border-black/5 rounded-md"
       >
         <div className="relative">
-          <button
-            type="button"
-            onClick={toggleShowFilter}
-            className={`
+          {!isMidScreen && (
+            <button
+              type="button"
+              onClick={toggleShowFilter}
+              className={`
             absolute top-8 p-0.5 px-3 rounded-t rotate-90 text-sm
             -right-[2.5rem] font-nunito bg-black text-white font-medium
           `}
-          >
-            Filter
-          </button>
+            >
+              Filter
+            </button>
+          )}
           <div className="p-3">
             <label className="font-medium">Filter</label>
           </div>
