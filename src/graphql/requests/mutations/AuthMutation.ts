@@ -43,6 +43,7 @@ export const ADMIN_SIGN_IN = gql`
             url
           }
         }
+        dateJoined
       }
     }
   }

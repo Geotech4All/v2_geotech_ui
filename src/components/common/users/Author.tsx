@@ -1,6 +1,7 @@
 "use client";
 import Avatar from "@mui/material/Avatar";
 import { UserDataType } from "./types";
+import { DateTime } from "../time";
 
 interface AuthorProps {
   user: UserDataType | undefined;
@@ -9,7 +10,6 @@ interface AuthorProps {
 
 export default function Author(props: AuthorProps) {
   const { user, dateTime } = props;
-  const date = dateTime ? new Date(dateTime) : null;
 
   const userName =
     user?.fullName && user?.fullName !== "None None" && user.fullName !== " "
@@ -24,15 +24,7 @@ export default function Author(props: AuthorProps) {
       />
       <div className="flex flex-col">
         <p>{userName}</p>
-        {date && (
-          <time className="text-xs" dateTime={dateTime}>
-            {date.toLocaleString("en-us", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
-          </time>
-        )}
+        <DateTime dateTime={dateTime} />
       </div>
     </div>
   );

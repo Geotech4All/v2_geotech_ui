@@ -1,6 +1,5 @@
 "use client";
-import { useMediaQuery } from "@mui/material";
-import React from "react"
+import React from "react";
 import { AdminNavbarLayout, AdminSidebarLayout } from "../admin";
 
 interface AdminNavLayoutProps {
@@ -9,15 +8,23 @@ interface AdminNavLayoutProps {
 
 export default function AdminNavLayout(props: AdminNavLayoutProps) {
   const { children } = props;
-  const isMediumScreen = useMediaQuery("(min-width: 768px)")
+  const [navType, setNavType] = React.useState<"mobile" | "desktop">();
+
+  React.useEffect(() => {
+    if (window.innerWidth < 768) {
+      setNavType("mobile");
+    } else {
+      setNavType("desktop");
+    }
+  }, []);
 
   return (
     <React.Fragment>
-      {isMediumScreen ? (
+      {navType === "desktop" && (
         <AdminSidebarLayout>{children}</AdminSidebarLayout>
-      ): (
-        <AdminNavbarLayout>{children}</AdminNavbarLayout>
       )}
+      {navType === "mobile" && <AdminNavbarLayout>{children}
+      </AdminNavbarLayout>}
     </React.Fragment>
-  )
+  );
 }

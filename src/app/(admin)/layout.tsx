@@ -1,3 +1,4 @@
+import { EnsureAuth } from "@/components/admin";
 import { AdminNavLayout } from "@/components/layouts";
 import React from "react"
 
@@ -10,7 +11,9 @@ export default function AdminLayout(props: LayoutProps) {
   return (
     <div>
       <AdminNavLayout>
-        {children}
+        <EnsureAuth>
+          {children}
+        </EnsureAuth>
       </AdminNavLayout>
     </div>
   )
