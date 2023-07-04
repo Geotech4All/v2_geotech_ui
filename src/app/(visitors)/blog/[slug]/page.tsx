@@ -84,7 +84,7 @@ export default async function PostDetails(props: PageProps) {
 }
 
 async function getPostDetails(postId: string) {
-  const url = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT ?? "";
+  const url = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? "";
   const res = await graphqlQuery<
     QueryGetPostByIdArgs,
     { post: typeof QueryReturs.getPostById }
