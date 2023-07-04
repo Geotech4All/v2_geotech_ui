@@ -24,12 +24,16 @@ export default function AdminNavBar() {
   return (
     <React.Fragment>
       <motion.nav
-        animate={{ height: admin.navOpen ? "16rem" : "2.5rem" }}
+        animate={{
+          height: admin.navOpen ? "16rem" : "2.5rem",
+          borderBottomLeftRadius: admin.navOpen ? "1rem" : "0rem",
+          borderBottomRightRadius: admin.navOpen ? "1rem" : "0rem",
+        }}
         className="fixed z-10 shadow p-2 top-0 w-screen flex flex-col gap-3 bg-white overflow-hidden"
       >
         <div className="flex items-center relative justify-center w-full">
           <button
-            className="text-2xl absolute left-2 hover:shadow-lg rounded transition"
+            className="text-2xl absolute left-2"
             onClick={toggleNavOpen}
           >
             {admin.navOpen ? <IoMdClose /> : <BiMenuAltLeft />}
@@ -56,7 +60,7 @@ export default function AdminNavBar() {
             exit={{ opacity: 0 }}
             key={Math.random()}
             onClick={toggleNavOpen}
-            className="fixed bg-black/10 inset-0"
+            className="fixed bg-black/5 inset-0"
           />
         )}
       </AnimatePresence>

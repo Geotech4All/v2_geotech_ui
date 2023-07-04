@@ -9,7 +9,7 @@ export default function StaffInfo() {
   const staffName = admin.staff?.fullName?.split(" ")[0];
   const staffGreeting = staffName !== "None" ? `Hello, ${staffName}` : "Hello";
   return (
-    <div>
+    <div className="flex flex-col md:flex-row gap-3 w-full items-start justify-between">
       <div>
         <h1 className="text-4xl md:text-6xl my-3 font-extrabold">
           {staffGreeting}
@@ -18,7 +18,7 @@ export default function StaffInfo() {
           Track team progress and user interaction.
         </p>
       </div>
-      <DateTime dateTime={admin.staff?.dateJoined}/>
+      <DateTime size="lg" dateTime={admin.staff?.dateJoined} icon/>
     </div>
   );
 }
