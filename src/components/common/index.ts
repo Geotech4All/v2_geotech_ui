@@ -4,3 +4,5 @@ export * from "./admin";
 export * from "./loading";
 export * from "./alert";
 export * from "./feedback";
+
+export * from "./types";

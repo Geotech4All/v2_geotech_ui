@@ -17,8 +17,8 @@ import { useAdminSignInMutation } from "@/graphql/generated";
 import { useRouter } from "next/navigation";
 import { ErrorAlert } from "@/components/common";
 import { useAppDispatch } from "@/redux/hooks";
-import { setUser } from "@/redux/slices/userSlice";
 import { setTokens } from "@/utils/token";
+import { setAdminStaff } from "@/redux/slices/adminSlice";
 
 export default function AdminSignIn() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -41,7 +41,7 @@ export default function AdminSignIn() {
       if (res.data?.tokenAuth?.success === true) {
         if (res.data.tokenAuth.user?.staff) {
           // Set the current logged in user
-          dispatch(setUser(res.data.tokenAuth.user));
+          dispatch(setAdminStaff(res.data.tokenAuth.user));
 
           // Update the user's tokens
           const token = res.data.tokenAuth.token ?? "";
