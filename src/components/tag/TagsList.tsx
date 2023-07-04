@@ -9,11 +9,11 @@ export default function TagList(props: TagsListProps) {
   const { tags, handleRemove } = props;
   return (
     <div className="flex flex-col gap-1">
-      <ul className="p-2 flex gap-2 rounded-md border">
+      <ul className="p-2 flex gap-2 rounded-md">
         {tags.length > 0 ? (
           tags.map((tag) => <TagButton handleRemove={handleRemove} key={tag?.tagId} tag={tag} />)
         ) : (
-          <span className="text-black/50">No tags</span>
+          <span className="text-black/50 text-sm italic">No tags</span>
         )}
       </ul>
     </div>

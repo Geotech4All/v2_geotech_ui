@@ -13,7 +13,7 @@ import { Transaction } from "@tiptap/pm/state";
 interface TiptapProps {
   initialContent?: string;
   getEditor: (editor: Editor) => void;
-  placeholder?: string;
+  placeholder?: React.ReactNode;
 }
 
 export default function Tiptap(props: TiptapProps) {
@@ -40,9 +40,9 @@ export default function Tiptap(props: TiptapProps) {
     editor?.state.doc.content.firstChild?.content.firstChild?.text;
 
   return (
-    <div className="shadow-xl shadow-black/5 p-1 rounded-lg">
+    <div className="p-1 rounded-lg">
       <ToolBar editor={editor} />
-      <div className="relative max-h-[90vh] overflow-auto">
+      <div className="relative mt-4 max-h-[90vh] overflow-auto">
         {!initialContent && !firstText && placeholder && (
           <div className="absolute top-2 left-2 italic text-black/20">
             {placeholder}

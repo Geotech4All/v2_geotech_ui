@@ -1,9 +1,6 @@
 "use client";
 import React from "react";
-import {
-  OrganizationType,
-  useCreateUpdateOrganizationMutation,
-} from "@/graphql/generated";
+import { useCreateUpdateOrganizationMutation } from "@/graphql/generated";
 import { Button, Modal, TextField } from "@mui/material";
 import { ErrorAlert, PageCircularProgress } from "@/components/common";
 import Image from "next/image";
@@ -12,7 +9,7 @@ import { ImagePicker } from "@/components/images";
 import { OrganizationDataType } from "./types";
 
 interface OrganizationFormProps {
-  initialOrg?: OrganizationType;
+  initialOrg?: OrganizationDataType;
   onSuccess?: (org: OrganizationDataType) => void;
 }
 

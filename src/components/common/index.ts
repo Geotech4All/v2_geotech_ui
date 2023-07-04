@@ -5,5 +5,6 @@ export * from "./loading";
 export * from "./alert";
 export * from "./feedback";
 export * from "./time";
+export * from "./links";
 
 export * from "./types";
