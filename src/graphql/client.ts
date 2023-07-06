@@ -35,12 +35,11 @@ const client = new Client({
             MutationRefreshTokenArgs
           >(REFRESH_TOKEN, { refreshToken: tokens?.refreshToken ?? "" });
 
-          if (result.data?.refreshToken) {
+          if (result.data?.refreshToken.success) {
             const token = result.data.refreshToken.token ?? "";
             const refreshToken = result.data.refreshToken.refreshToken ?? "";
             setTokens(token, refreshToken);
           } else {
-            localStorage.clear();
             if (typeof window !== "undefined") {
               window.location.replace("/");
             }
