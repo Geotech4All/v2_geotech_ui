@@ -27,14 +27,12 @@ export default function Opportunites() {
   const handleChangeTitle = (title?: string) => setTitle(title);
 
   const handleUpdateTag = (tags: TagEdgeDataType[]) => {
-    console.log(tags)
     setTags(tags);
   };
 
   const handleUpdateDatePosted = (date: OpportunityDates) => {
     setDatePosted(date);
   };
-
 
   return (
     <Page>

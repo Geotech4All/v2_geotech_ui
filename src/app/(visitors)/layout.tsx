@@ -6,6 +6,15 @@ interface PageProps {
   children?: React.ReactNode;
 }
 
+export const metadata = {
+  title: {
+    template: "%s | Geotech",
+    default: "Geotech",
+  },
+  keywords: ["Geology", "Technology", "Opportunities"],
+  authors: [{name: "Ezekiel Victor", url: "https://vice.codes"}],
+};
+
 export default function VisitorsLayout(props: PageProps) {
   const { children } = props;
   return (

@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Geotech",
   description: "Redefining geology with technology",
+  metadataBase: new URL("https://geotech4all.com"),
   icons: {
     icon: {
       rel: "icon",
@@ -20,8 +21,9 @@ export const metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://geotech4all.com",
     title: "Geotech",
+    siteName: "Geotech4all",
+    url: "https://geotech4all.com",
     description: "Redefining Geology with technology",
     images: [
       {
@@ -29,6 +31,7 @@ export const metadata = {
         alt: "Geotech4all",
       },
     ],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
@@ -52,7 +55,9 @@ export default function RootLayout({
       <MuiThemeProvider>
         <ReducProvider>
           <URQLProvider>
-            <body className={`max-w-[100vw] overflow-x-hidden ${inter.className}`}>
+            <body
+              className={`max-w-[100vw] overflow-x-hidden ${inter.className}`}
+            >
               {children}
               <Analytics />
             </body>

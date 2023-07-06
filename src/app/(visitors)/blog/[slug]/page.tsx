@@ -21,14 +21,19 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
   const postId = params.slug.split("-")[0];
 
   const post = await getPostDetails(postId);
+  const fullName = post?.author.fullName;
+  const authorName = fullName !== "None None" ? fullName : "The Geotech Team";
   return {
     title: post?.title,
     description: post?.abstract,
+    category: "geology",
     openGraph: {
       type: "article",
-      description: post?.abstract ?? "",
       title: post?.title ?? "",
+      description: post?.abstract ?? "",
       url: `https://www.geotech4all.com/blog/${params.slug}`,
+      publishedTime: post?.lastUpdated ?? "",
+      authors: [authorName ?? ""],
       images: [
         {
           url: post?.coverPhoto?.url ?? "",
@@ -38,7 +43,9 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      images: post?.coverPhoto?.url ?? "",
+      title: post?.title ?? "",
+      images: [post?.coverPhoto?.url ?? ""],
+      description: post?.abstract ?? "",
       creator: "@creator",
       site: "@site",
     },

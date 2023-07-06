@@ -188,3 +188,38 @@ export const OPPORTUNITIES = gql`
     }
   }
 `;
+
+export const OPPORTUNITY = gql`
+  query Opportunity($opportunityId: ID!) {
+    opportunity(opportunityId: $opportunityId) {
+      content
+      lastUpdated
+      location {
+        address
+        country
+        lastUpdated
+        locationId
+        state
+        zipCode
+      }
+      opportunityId
+      title
+      description
+      tags {
+        title
+        tagId
+        description
+      }
+      organization {
+        organizationId
+        name
+        description
+        logo {
+          url
+          imageId
+          description
+        }
+      }
+    }
+  }
+`;
