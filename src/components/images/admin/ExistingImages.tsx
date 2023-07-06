@@ -12,7 +12,7 @@ export default function ExistingImage(props: ExistingImageProps) {
   const { images, onSelectImage } = props;
   return (
     <div className="overflow-y-auto h-screen max-h-[70vh]">
-      <div>
+      <div className="mb-3">
         <input
           placeholder="Search image"
           className="w-full p-1 px-2 rounded text-lg shadow outline-none"
@@ -20,7 +20,7 @@ export default function ExistingImage(props: ExistingImageProps) {
       </div>
       {images.length > 0
         ? (
-          <ImageList>
+          <ImageList cols={2}>
             {images.map((image) => (
               <ImagePickerItem
                 onSelect={onSelectImage}

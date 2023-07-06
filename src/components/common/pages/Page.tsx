@@ -1,4 +1,5 @@
 import React from "react";
+import { twMerge } from "tailwind-merge";
 
 interface PageProps {
   children?: React.ReactNode;
@@ -9,7 +10,13 @@ interface PageProps {
 export default function Page(props: PageProps) {
   const { id, children, className } = props;
   return (
-    <main id={id} className={`px-3 pb-8 min-w-[90vw] min-h-screen ${className}`}>
+    <main
+      id={id}
+      className={twMerge(
+        "px-3 pb-8 w-full min-h-screen",
+        className,
+      )}
+    >
       {children}
     </main>
   );

@@ -5,7 +5,7 @@ import {
   OpportunityList,
   Search,
   usePaginatedOpportunites,
-} from "@/components/opportunites";
+} from "@/components/opportunities";
 import { TagEdgeDataType } from "@/components/tag/types";
 import { OpportunityDates } from "@/graphql/generated";
 import React from "react";
@@ -16,8 +16,10 @@ export default function Opportunites() {
   const [datePosted, setDatePosted] = React.useState<OpportunityDates>(
     OpportunityDates.AnyTime,
   );
+  const pageSize = 20;
   const { items, error } = usePaginatedOpportunites({
     datePosted,
+    first: pageSize,
     title_Icontains: title,
     tags_Id_In: tags.map((tag) => tag?.node?.tagId ?? ""),
   });
@@ -25,6 +27,7 @@ export default function Opportunites() {
   const handleChangeTitle = (title?: string) => setTitle(title);
 
   const handleUpdateTag = (tags: TagEdgeDataType[]) => {
+    console.log(tags)
     setTags(tags);
   };
 
@@ -32,7 +35,6 @@ export default function Opportunites() {
     setDatePosted(date);
   };
 
-  console.log(error?.message)
 
   return (
     <Page>

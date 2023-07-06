@@ -13,7 +13,7 @@ export default function TagList(props: TagsListProps) {
         {tags.length > 0 ? (
           tags.map((tag) => <TagButton handleRemove={handleRemove} key={tag?.tagId} tag={tag} />)
         ) : (
-          <span className="text-black/50 text-sm italic">No tags</span>
+          <span className="text-black/30 cursor-default text-sm italic">No tags</span>
         )}
       </ul>
     </div>

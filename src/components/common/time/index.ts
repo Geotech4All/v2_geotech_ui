@@ -1,3 +1,4 @@
 import DateTime from "./DateTime";
+import RelativeTime from "./RelativeTime";
 
-export { DateTime };
+export { DateTime, RelativeTime };

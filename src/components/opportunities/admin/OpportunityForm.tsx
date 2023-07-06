@@ -88,7 +88,7 @@ export default function OpportunityForm(props: OpportunityFormProps) {
     <React.Fragment>
       <form
         onSubmit={handleSaveOpportunity}
-        className="flex items-center flex-col gap-4 w-full"
+        className="flex items-center flex-col gap-9 w-full"
       >
         <ErrorAlert error={error} />
         <div className="max-w-4xl flex flex-col gap-9 w-full">
@@ -101,7 +101,7 @@ export default function OpportunityForm(props: OpportunityFormProps) {
             />
             <Divider />
           </fieldset>
-          <fieldset className="flex flex-col md:flex-row gap-3">
+          <fieldset className="flex flex-col md:flex-row gap-7">
             <div className="flex flex-1 flex-col gap-2">
               <legend className="text-black/60 text-sm italic mb-1">
                 (Optional) Tags
@@ -118,12 +118,12 @@ export default function OpportunityForm(props: OpportunityFormProps) {
                   width={50}
                   height={50}
                   className={`rounded-full aspect-square object-cover border ${
-                    !org ? "opacity-50" : ""
+                    !org ? "opacity-30" : ""
                   }`}
                   alt={org ? org.logo?.description ?? "" : "/logo placeholder"}
                   src={org ? org.logo?.url ?? "" : "/image_placeholder.svg"}
                 />
-                <p className={`${!org ? "italic opacity-50" : ""}`}>
+                <p className={`${!org ? "italic opacity-30" : ""}`}>
                   {org?.name ?? "Organization name"}
                 </p>
               </div>

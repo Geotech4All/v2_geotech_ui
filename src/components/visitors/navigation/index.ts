@@ -1,5 +1,5 @@
-import VisitorNavLayout from "./VisitorNavLayout";
+import VisitorNavigation from "./VisitorNavigation";
 import DesktopNavBar from "./DesktopNavBar";
 import MobileLink from "./MobileLink";
 
-export { VisitorNavLayout, DesktopNavBar, MobileLink };
+export { VisitorNavigation, DesktopNavBar, MobileLink };

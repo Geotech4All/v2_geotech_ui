@@ -1,6 +1,14 @@
 import { Page } from "@/components/common";
 
-export default function OpportunityDetails() {
+interface OpportunityDetailsProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function OpportunityDetails(props: OpportunityDetailsProps) {
+  const { params } = props;
+  console.log(params)
   return (
     <Page>
       Opportunity

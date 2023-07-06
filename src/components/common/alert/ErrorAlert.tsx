@@ -21,7 +21,7 @@ export default function ErrorAlert(props: ErrorAlertProps) {
   const errorDuration = 20000;
 
   React.useEffect(() => {
-    if (error satisfies string) {
+    if (typeof error === "string") {
       setStrError(error as string);
     } else if (error satisfies CustomErrorType) {
       setCustomErrors(error as CustomErrorType);
@@ -35,19 +35,19 @@ export default function ErrorAlert(props: ErrorAlertProps) {
       {customErrors
         ? (
           <TransitionAlert duration={errorDuration} variant="error">
-            {customErrors.nonFieldErrors[0].message}
+            {JSON.stringify(customErrors.nonFieldErrors[0].message)}
           </TransitionAlert>
         )
         : strError
         ? (
           <TransitionAlert duration={errorDuration} variant="error">
-            {strError}
+            {JSON.stringify(strError)}
           </TransitionAlert>
         )
         : combinedErr
         ? (
           <TransitionAlert duration={errorDuration} variant="error">
-            {combinedErr.graphQLErrors[0].message}
+            {JSON.stringify(combinedErr.graphQLErrors[0].message)}
           </TransitionAlert>
         )
         : null}

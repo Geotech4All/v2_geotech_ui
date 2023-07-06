@@ -1,4 +1,4 @@
-import { VisitorNavLayout } from "@/components/visitors";
+import { VisitorNavigation } from "@/components/visitors";
 import Footer from "@/components/visitors/Footer";
 import React from "react";
 
@@ -11,9 +11,8 @@ export default function VisitorsLayout(props: PageProps) {
   return (
     <React.Fragment>
       <div id="__main" className="z-0">
-        <VisitorNavLayout>
-          {children}
-        </VisitorNavLayout>
+        <VisitorNavigation />
+        <div className="z-0 mt-[2.8rem] md:mt-[4.4rem]">{children}</div>
       </div>
       <Footer />
     </React.Fragment>

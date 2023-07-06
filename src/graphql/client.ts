@@ -41,7 +41,7 @@ const client = new Client({
             setTokens(token, refreshToken);
           } else {
             if (typeof window !== "undefined") {
-              window.location.replace("/");
+              window.location.replace("/admin/signin");
             }
           }
         },

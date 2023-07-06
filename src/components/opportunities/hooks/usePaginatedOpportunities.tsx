@@ -14,7 +14,7 @@ export default function usePaginatedOpportunites(
     initialAfter ?? undefined,
   );
   const [hasMore, setHasMore] = React.useState(false);
-  const [{ data, fetching, error }] = useOpportunitiesQuery({
+  const [{ data, fetching, error }, refetch] = useOpportunitiesQuery({
     variables: {
       after,
       ...rest,
@@ -25,6 +25,7 @@ export default function usePaginatedOpportunites(
   );
 
   React.useEffect(() => {
+    console.log("Fetched more");
     if (data?.opportunities?.edges) {
       setItems((curr) =>
         new Set(Array.from(curr).concat(data?.opportunities?.edges))
@@ -36,6 +37,7 @@ export default function usePaginatedOpportunites(
   const loadMore = (cursor?: string) => {
     if (hasMore) {
       setAfter(cursor);
+      refetch({ requestPolicy: "network-only" });
     }
   };
 

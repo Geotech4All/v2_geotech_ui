@@ -52,7 +52,7 @@ export default function RootLayout({
       <MuiThemeProvider>
         <ReducProvider>
           <URQLProvider>
-            <body className={inter.className}>
+            <body className={`max-w-[100vw] overflow-x-hidden ${inter.className}`}>
               {children}
               <Analytics />
             </body>

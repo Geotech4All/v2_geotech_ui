@@ -42,6 +42,8 @@ export default function EnsureAuth(props: LayoutProps) {
         setHasTokens(true);
         if (admin.staff) {
           setIsAuthenticated(true);
+        } else {
+          refetch({ requestPolicy: "network-only" });
         }
       }
     });
