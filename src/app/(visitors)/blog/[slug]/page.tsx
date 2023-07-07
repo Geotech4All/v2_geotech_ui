@@ -1,13 +1,17 @@
 import React from "react";
 import { HTMLRederrer, Page } from "@/components/common";
 import Author from "@/components/common/users/Author";
-import { QueryGetPostByIdArgs } from "@/graphql/generated";
+import {
+  MutationIncreasePostViewCountArgs,
+  QueryGetPostByIdArgs,
+} from "@/graphql/generated";
 import { POST_DETAIL } from "@/graphql/requests/queries/Queries";
-import { QueryReturs } from "@/graphql/types";
+import { MutationReturns, QueryReturs } from "@/graphql/types";
 import { graphqlQuery } from "@/graphql/utils/fetch";
 import { Metadata } from "next";
 import PostReadLength from "@/components/blog/PostReadLength";
 import Image from "next/image";
+import { UPDATE_POST_VIEWS } from "@/graphql/requests/mutations/VisitorMutations";
 
 interface PageProps {
   params: {
@@ -91,9 +95,18 @@ export default async function PostDetails(props: PageProps) {
 
 async function getPostDetails(postId: string) {
   const url = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? "";
+  type PostQueryReturn = typeof QueryReturs.getPostById;
+  type IncreaseViewsReturns = typeof MutationReturns.increasePostViewCount;
+
+  graphqlQuery<
+    MutationIncreasePostViewCountArgs,
+    { increasePostViewCount: IncreaseViewsReturns }
+  >(url, UPDATE_POST_VIEWS, { postId });
+
   const res = await graphqlQuery<
     QueryGetPostByIdArgs,
-    { post: typeof QueryReturs.getPostById }
+    { post: PostQueryReturn }
   >(url, POST_DETAIL, { postId });
+
   return res.data.post;
 }

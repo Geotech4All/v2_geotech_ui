@@ -30,7 +30,7 @@ export default function Tiptap(props: TiptapProps) {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "min-h-[30rem] border-none !border-black/5 p-2",
+        class: "min-h-[30rem] !focus-within:border-none !border-none !border-black/5 p-2",
       },
     },
     onUpdate: handleChange,

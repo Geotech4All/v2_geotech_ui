@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import * as Urql from "urql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: any }> = {
+export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
 export type MakeOptional<T, K extends keyof T> =
@@ -11,7 +11,7 @@ export type MakeOptional<T, K extends keyof T> =
 export type MakeMaybe<T, K extends keyof T> =
   & Omit<T, K>
   & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: any }, K extends keyof T> =
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
   { [_ in K]?: never };
 export type Incremental<T> =
   | T
@@ -1788,6 +1788,18 @@ export type VerifyTokenMutation = {
   } | null;
 };
 
+export type IncreasePostViewCountMutationVariables = Exact<{
+  postId: Scalars["ID"]["input"];
+}>;
+
+export type IncreasePostViewCountMutation = {
+  __typename?: "Mutation";
+  increasePostViewCount?: {
+    __typename?: "PostViewsIncreaseMutation";
+    success?: boolean | null;
+  } | null;
+};
+
 export type OrganizationsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type OrganizationsQuery = {
@@ -2410,6 +2422,20 @@ export function useVerifyTokenMutation() {
   return Urql.useMutation<VerifyTokenMutation, VerifyTokenMutationVariables>(
     VerifyTokenDocument,
   );
+}
+export const IncreasePostViewCountDocument = gql`
+    mutation IncreasePostViewCount($postId: ID!) {
+  increasePostViewCount(postId: $postId) {
+    success
+  }
+}
+    `;
+
+export function useIncreasePostViewCountMutation() {
+  return Urql.useMutation<
+    IncreasePostViewCountMutation,
+    IncreasePostViewCountMutationVariables
+  >(IncreasePostViewCountDocument);
 }
 export const OrganizationsDocument = gql`
     query Organizations {

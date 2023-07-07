@@ -1,7 +1,8 @@
-import { Aside, StaffInfo } from "@/components/admin";
+import { Aside, StaffInfo, Trophies } from "@/components/admin";
 import { Page } from "@/components/common";
 
-export default function DashBoard() {
+export default async function DashBoard() {
+  
   return (
     <Page
       className={`
@@ -9,8 +10,9 @@ export default function DashBoard() {
         sm:flex-row font-nunito w-full
     `}
     >
-      <div className="sm:flex-1">
+      <div className="sm:flex-1 flex flex-col gap-4">
         <StaffInfo />
+        <Trophies />
       </div>
       <Aside className="sm:flex-[0.4]"/>
     </Page>

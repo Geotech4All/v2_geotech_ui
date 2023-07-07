@@ -223,3 +223,54 @@ export const OPPORTUNITY = gql`
     }
   }
 `;
+
+export const POPULAR_PODCASTS = gql`
+  query MostListenedToPodcasts($first: Int, $titleIcontains: String) {
+    mostListenedToPodcasts(first: $first, title_Icontains: $titleIcontains) {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+        startCursor
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          coverPhoto {
+            url
+            imageId
+            description
+          }
+          lastUpdated
+          description
+          title
+          podcastId
+          listens
+          hosts {
+            user {
+              profile {
+                image {
+                  url
+                  imageId
+                  description
+                }
+              }
+            }
+            hostId
+          }
+          guests {
+            organization {
+              logo {
+                url
+                imageId
+                description
+              }
+              organizationId
+            }
+            guestId
+          }
+        }
+      }
+    }
+  }
+`;
