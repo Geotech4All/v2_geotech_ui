@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { SyntheticEvent } from "react";
 import { TagList } from "@/components/tag";
 import { OpportunityDates, useTagsQuery } from "@/graphql/generated";
-import { TagEdgeDataType } from "@/components/tag/types";
+import { TagEdgeDataType, TagNodeDataType } from "@/components/tag/types";
 
 interface FilterProps {
   onTagChange: (tags: TagEdgeDataType[]) => void;
@@ -44,7 +44,7 @@ export default function Filter(props: FilterProps) {
     }
   };
 
-  const removeTag = (tag: TagEdgeDataType) => {
+  const removeTag = (tag: TagNodeDataType) => {
     const newTags = tags.filter((item) => item !== tag);
     onTagChange(newTags);
   };
@@ -127,7 +127,12 @@ export default function Filter(props: FilterProps) {
                 options={data?.tags?.edges ?? []}
                 renderInput={(params) => <TextField {...params} label="Tag" />}
               />
-              {tags && <TagList removeTag={removeTag} tags={tags} />}
+              {tags && (
+                <TagList
+                  handleRemove={removeTag}
+                  tags={tags.map((tag) => tag?.node)}
+                />
+              )}
             </section>
           </div>
         </div>
