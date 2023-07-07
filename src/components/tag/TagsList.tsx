@@ -29,8 +29,8 @@ function TagButton(props: TagButtonProps) {
   const { tag, handleRemove } = props;
 
   const handleRemoveTag = () => {
-    handleRemove(tag)
-  }
+    handleRemove(tag);
+  };
 
   return (
     <div className="p-1 flex items-center w-fit gap-3 pl-2 rounded bg-black text-white font-nunito font-medium">

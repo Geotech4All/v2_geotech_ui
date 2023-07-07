@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import AdminNavBar from "./NavBar";
 
 interface LayoutProps {
@@ -12,5 +12,5 @@ export default function AdminNavbarLayout(props: LayoutProps) {
       <AdminNavBar />
       <div className="mt-11">{ children }</div>
     </div>
-  )
+  );
 }

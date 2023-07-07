@@ -7,7 +7,7 @@ export const SIGN_UP = gql`
       success
     }
   }
-`
+`;
 
 export const ADMIN_SIGN_IN = gql`
   mutation AdminSignIn($password: String!, $email: String) {
@@ -47,7 +47,7 @@ export const ADMIN_SIGN_IN = gql`
       }
     }
   }
-`
+`;
 
 export const REFRESH_TOKEN = gql`
   mutation RefreshToken($refreshToken: String!) {
@@ -59,7 +59,7 @@ export const REFRESH_TOKEN = gql`
       token
     }
   }
-`
+`;
 
 export const  VERIFY_TOKEN = gql`
   mutation VerifyToken($token: String!) {
@@ -69,4 +69,4 @@ export const  VERIFY_TOKEN = gql`
       payload
     }
   }
-`
+`;

@@ -6,5 +6,5 @@ export default function Opportunities() {
       Opportunities
       <LinkButton href="/admin/opportunities/new">New Opportuntiy</LinkButton>
     </Page>
-  )
+  );
 }

@@ -7,7 +7,7 @@ interface SignUpLayoutProps {
 export const metadata = {
   title: "Sign Up - Geotech",
    description: "Join the geotech company"
-}
+};
 
 export default function SignUpLayout(props: SignUpLayoutProps) {
   const { children } = props;
@@ -15,5 +15,5 @@ export default function SignUpLayout(props: SignUpLayoutProps) {
     <React.Fragment>
       {children}
     </React.Fragment>
-  )
+  );
 }

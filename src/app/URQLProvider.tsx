@@ -13,5 +13,5 @@ export default function URQLProvider(props: ProviderProps) {
         <Provider value={client}>
             {children}
         </Provider>
-    )
+    );
 }

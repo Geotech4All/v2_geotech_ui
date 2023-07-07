@@ -16,7 +16,7 @@ export default function TagForm(props: TagFormProps) {
   const { initialValue, onSuccess } = props;
   const titleRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const descRef = React.useRef() as React.MutableRefObject<HTMLTextAreaElement>;
-  const [{ fetching, error }, saveTag] = useTagCreateUpdateMutation()
+  const [{ fetching, error }, saveTag] = useTagCreateUpdateMutation();
 
   const handleSaveTag: React.FormEventHandler = (e) => {
     e.preventDefault();
@@ -26,10 +26,10 @@ export default function TagForm(props: TagFormProps) {
       description: descRef.current.value,
     }).then(res => {
       if (res.data?.createUpdateTag?.success && onSuccess) {
-        onSuccess(res.data.createUpdateTag.tag)
+        onSuccess(res.data.createUpdateTag.tag);
       }
-    })
-  }
+    });
+  };
 
   return (
     <form onSubmit={handleSaveTag} className="flex flex-col gap-2 max-w-2xl p-4 rounded-md w-full bg-white">

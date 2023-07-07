@@ -27,13 +27,13 @@ export default function SelectOrganization(props: SelectOrganizationProps) {
   React.useEffect(() => {
     const orgs = data?.organizations?.edges.map((edge) => edge?.node);
     setOrgs(orgs ?? []);
-  }, [data])
+  }, [data]);
 
   const selectOrgFactory = (org: OrganizationDataType) => {
     return function() {
-      onSelectOrg && onSelectOrg(org)
-    }
-  }
+      onSelectOrg && onSelectOrg(org);
+    };
+  };
 
 
   return (

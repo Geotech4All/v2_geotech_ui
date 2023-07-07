@@ -16,5 +16,5 @@ export default function DesktopNavBar() {
         {visitoUrls.map((url, index) => <NavURL key={`url.name-${index}`} {...url}/>)}
       </ul>
     </nav>
-  )
+  );
 }

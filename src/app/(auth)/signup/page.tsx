@@ -35,7 +35,7 @@ export default function SignUp() {
       password2: pass2Ref.current.value,
     }).then(res => {
       if (!res.error) {
-        router.replace("/signup/success")
+        router.replace("/signup/success");
       }
     });
   };

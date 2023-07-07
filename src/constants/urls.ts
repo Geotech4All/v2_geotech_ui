@@ -33,7 +33,7 @@ export const visitoUrls: URLType[] = [
     href: "/opportunities",
     icon: HiBriefcase
   }
-]
+];
 
 export const socialLinks: URLType[] = [
   {
@@ -51,7 +51,7 @@ export const socialLinks: URLType[] = [
     href: "https://www.linkedin.com/company/geotech4all/",
     icon: FaLinkedinIn
   }
-]
+];
 
 export const adminUrls: URLType[] = [
   {
@@ -74,4 +74,4 @@ export const adminUrls: URLType[] = [
     href: "/admin/opportunities",
     icon: HiBriefcase
   }
-]
+];

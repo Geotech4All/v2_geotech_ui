@@ -11,9 +11,9 @@ export default function Error(props: ErrorProps) {
   const { error, reset } = props;
   const router = useRouter();
   const resetError = () => {
-    reset()
-    router.refresh()
-  }
+    reset();
+    router.refresh();
+  };
   
   return (
     <div className="flex flex-col items-center">

@@ -9,14 +9,14 @@ const client = new Client({
   exchanges: [
     cacheExchange,
     authExchange(async (utils) => {
-      let tokens = await getTokens();
+      const tokens = await getTokens();
 
       return {
         addAuthToOperation(operation) {
           if (typeof window !== "undefined") {
-            const paths = window.location.pathname.split("/")
+            const paths = window.location.pathname.split("/");
             if (paths[1] !== "admin") {
-              return operation
+              return operation;
             }
           }
           if (!tokens?.token) return operation;

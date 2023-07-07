@@ -35,5 +35,5 @@ export default function ToolGroup(props: GroupProps) {
       >
       {children}
       </Popover>
-  )
+  );
 }

@@ -6,5 +6,5 @@ export default function NewPost() {
     <Page>
       <PostForm />
     </Page>
-  )
+  );
 }

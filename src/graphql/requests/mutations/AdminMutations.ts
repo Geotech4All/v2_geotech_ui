@@ -15,7 +15,7 @@ export const CREATE_UPDATE_TAG = gql`
       }
     }
   }
-`
+`;
 
 export const CREATE_UPDATE_ORGANIZATION = gql`
   mutation CreateUpdateOrganization($description: String, $logoId: ID, $name: String, $organizationId: ID) {
@@ -37,7 +37,7 @@ export const CREATE_UPDATE_ORGANIZATION = gql`
       }
     }
   }
-`
+`;
 
 export const CREATE_UPDATE_IMAGE = gql`
   mutation CreateUpdateImage($description: String, $image: Upload, $folder: ImageFoldersEnum, $imageId: ID) {
@@ -54,7 +54,7 @@ export const CREATE_UPDATE_IMAGE = gql`
       }
     }
   }
-`
+`;
 
 export const CREATE_UPDATE_OPPORTUNITY = gql`
   mutation CreateUpdateOpportunity($title: String!, $content: String, $tagIds: [ID], $opportunityId: ID, $organizationId: ID, $locationId: ID, $description: String) {
@@ -66,4 +66,19 @@ export const CREATE_UPDATE_OPPORTUNITY = gql`
       }
     }
   }
-`
+`;
+
+export const CREATE_UPDATE_POST = gql`
+  mutation CreateUpdatePost($body: String!, $title: String!, $abstract: String, $coverPhotoId: ID, $postId: ID) {
+    createUpdatePost(body: $body, title: $title, abstract: $abstract, coverPhotoId: $coverPhotoId, postId: $postId) {
+      errors {
+        field
+        messages
+      }
+      success
+      post {
+        postId
+      }
+    }
+  }
+`;

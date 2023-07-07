@@ -9,7 +9,7 @@ import { getDocHeight } from "@/utils/scroll";
 export default function PostList() {
   const { items, loadMore, fetching } = usePaginatedPosts({ first: 6 });
 
-  const handleScroll = () => {
+  const handleScroll = React.useCallback(() => {
     const scrollModifier = 300;
     const docHeight = getDocHeight();
     const currentScroll = window.scrollY + window.innerHeight;
@@ -17,7 +17,7 @@ export default function PostList() {
     if (currentScroll + scrollModifier > docHeight) {
       loadMore(items.pop()?.cursor ?? undefined);
     }
-  };
+  }, [items, loadMore]);
 
   React.useEffect(() => {
     document.addEventListener("scroll", handleScroll);

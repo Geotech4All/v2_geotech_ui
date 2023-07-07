@@ -18,5 +18,5 @@ export default function PageCircularProgress(props: PageCircularProgressProps) {
         </Modal>
       )}
     </React.Fragment>
-  )
+  );
 }

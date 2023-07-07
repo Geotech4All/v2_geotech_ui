@@ -8,5 +8,5 @@ export default function NavURL(props: URLType) {
       <Icon />
       {name}
     </Link>
-  )
+  );
 }

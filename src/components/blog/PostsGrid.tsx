@@ -19,5 +19,5 @@ export default function PostsGrid(props: PostsGridProps) {
         ))}
       </ul>
     </React.Fragment>
-  )
+  );
 }

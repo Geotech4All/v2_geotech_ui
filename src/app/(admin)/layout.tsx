@@ -1,6 +1,6 @@
 import { EnsureAuth } from "@/components/admin";
 import { AdminNavLayout } from "@/components/layouts";
-import React from "react"
+import React from "react";
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -16,5 +16,5 @@ export default function AdminLayout(props: LayoutProps) {
         </EnsureAuth>
       </AdminNavLayout>
     </div>
-  )
+  );
 }

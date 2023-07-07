@@ -6,5 +6,5 @@ export default function NewOpportunity() {
     <Page className="py-3">
       <OpportunityForm />
     </Page>
-  )
+  );
 }

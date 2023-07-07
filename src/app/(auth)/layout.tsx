@@ -1,5 +1,5 @@
 import { AuthLayout } from "@/components/layouts";
-import React from "react"
+import React from "react";
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -11,5 +11,5 @@ export default function AuthPageLayout(props: LayoutProps) {
     <AuthLayout>
       { children }
     </AuthLayout>
-  )
+  );
 }

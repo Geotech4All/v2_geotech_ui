@@ -33,5 +33,5 @@ export default function MuiThemeProvider(props: ProviderProps) {
             <CssBaseline />
             {children}
         </ThemeProvider>
-    )
+    );
 }

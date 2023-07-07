@@ -5,5 +5,5 @@ export default function PostAdmin() {
     <Page>
       Post Admin
     </Page>
-  )
+  );
 }

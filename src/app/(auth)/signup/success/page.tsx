@@ -8,5 +8,5 @@ export default function AuthSuccess() {
         <Link className="text-violet-800 hover:text-violet-400 text-2xl transition" href="/signin">Sign In</Link>
       </div>
     </div>
-  )
+  );
 }

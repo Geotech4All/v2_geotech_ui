@@ -9,5 +9,5 @@ export default function TiptapPostSection(props: TiptapPostArticleProps) {
   const { html, className } = props;
   return (
     <section className={`${styles.tiptap} ${className}`} dangerouslySetInnerHTML={{ __html: html }} />
-  )
+  );
 }

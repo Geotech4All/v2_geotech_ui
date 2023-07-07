@@ -14,9 +14,9 @@ export default function AuthLayout(props: AuthLayoutProps) {
     if (window.innerWidth < 800) {
       setShowImage(false);
     } else {
-      setShowImage(true)
+      setShowImage(true);
     }
-  }, [])
+  }, []);
   
   return (
     <div className="flex max-h-screen min-h-screen overflow-hidden justify-center">

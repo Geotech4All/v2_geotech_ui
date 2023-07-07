@@ -1,6 +1,14 @@
 {
-  "extends": ["eslint:recommended", "next", "prettier"],
+  "extends": [
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }]
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used" }],
+    "@typescript-eslint/semi": ["error"],
+    "@typescript-eslint/no-extra-semi": ["error"]
   }
 }

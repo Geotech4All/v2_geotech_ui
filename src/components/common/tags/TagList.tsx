@@ -12,5 +12,5 @@ export default function TagList(props: TagListProps) {
       <ul className="flex gap-3 flex-wrap">
           {tags.map(tag => <Tag removeTag={removeTag} key={Math.random()} tag={tag} />)}
       </ul>
-    )
+    );
 }

@@ -18,9 +18,9 @@ export default function Search(props: SearchProps) {
 
   const handleKeyDown: React.KeyboardEventHandler = (e) => {
     if (e.key === "Enter") {
-      handleSearch()
+      handleSearch();
     }
-  }
+  };
 
   return (
     <div

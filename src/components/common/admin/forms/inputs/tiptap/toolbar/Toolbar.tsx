@@ -21,9 +21,9 @@ export default function ToolBar(props: ToolBarProps) {
       <Divider />
       <FontTools editor={editor}/>
     </List>
-  )
+  );
 }
 
 function Divider() {
-  return <div className="w-[1px] mx-2 min-h-[30px] bg-black/10"/>
+  return <div className="w-[1px] mx-2 min-h-[30px] bg-black/10"/>;
 }

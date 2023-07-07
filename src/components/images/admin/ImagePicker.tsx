@@ -17,7 +17,7 @@ export default function ImagePicker(props: ImagePickerProps) {
   const { onSelectImage } = props;
   const [tab, setTab] = React.useState(0);
   const [{ fetching, data }] = useImagesQuery();
-  const [imageData, setImageData] = React.useState<ImageDataType[]>([])
+  const [imageData, setImageData] = React.useState<ImageDataType[]>([]);
 
   const handleTabChange = (_e: React.SyntheticEvent, newValue: number) => {
     setTab(newValue);
@@ -25,8 +25,8 @@ export default function ImagePicker(props: ImagePickerProps) {
 
   React.useEffect(() => {
     const newImages = (data?.images?.edges ?? []).map((edge) => edge?.node);
-    setImageData(newImages)
-  }, [data])
+    setImageData(newImages);
+  }, [data]);
 
 
   return (

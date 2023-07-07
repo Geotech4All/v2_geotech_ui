@@ -6,8 +6,8 @@ export const Heading = TiptapHeading.configure({
   HTMLAttributes: {
     class: "editor-heading"
   }
-})
+});
 
 export const FontFamily = TiptapFontFamily.configure({
   types: ["textStyle"]
-})
+});

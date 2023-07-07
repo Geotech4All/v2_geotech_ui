@@ -13,5 +13,5 @@ export default function NothingFound(props: NothingFoundProps) {
         <p className="font-bold font-nunito text-lg">{caption}</p>
       </div>
     </div>
-  )
+  );
 }

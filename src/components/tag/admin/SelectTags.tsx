@@ -18,21 +18,21 @@ export default function SelectTags(props: SelectTagsProps) {
   const { handleSelect } = props;
   const [tagFormOpen, setTagFormOpen] = React.useState(false);
   const [{ data }, refetch] = useTagsQuery();
-  const [tags, setTags] = React.useState<TagDataType[]>([])
+  const [tags, setTags] = React.useState<TagDataType[]>([]);
 
   React.useEffect(() => {
-    const tags = data?.tags?.edges.map(edge => edge?.node)
-    setTags(tags ?? [])
-  }, [data])
+    const tags = data?.tags?.edges.map(edge => edge?.node);
+    setTags(tags ?? []);
+  }, [data]);
 
   const handleNewTag = (_: TagDataType | undefined) => {
-    refetch()
-    toggleTagForm()
-  }
+    refetch();
+    toggleTagForm();
+  };
 
   const handleChange = (_e: React.SyntheticEvent<Element, Event>, newValue: TagDataType ) => {
-    handleSelect(newValue)
-  }
+    handleSelect(newValue);
+  };
 
   const toggleTagForm = () => setTagFormOpen((curr) => !curr);
   return (

@@ -13,5 +13,5 @@ export default function RelativeTime(props: RelativeTimeProps) {
     <time className={className} dateTime={dateTime}>
       {relativeTime}
     </time>
-  )
+  );
 }
