@@ -3,7 +3,7 @@ export type UserStateType =
     __typename?: "UserNode";
     fullName?: string | null;
     email: string;
-    dateJoined: unknown;
+    dateJoined: any;
     staff?: {
       __typename?: "StaffType";
       canCreatePost: boolean;
