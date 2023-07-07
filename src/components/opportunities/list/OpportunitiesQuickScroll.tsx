@@ -4,6 +4,7 @@ import { useMediaQuery } from "@mui/material";
 import { usePaginatedOpportunites } from "../hooks";
 import OpportunityList from "./OpportunityList";
 import React from "react";
+import { hasReachedBottom } from "@/utils/scroll";
 
 export default function OpportuntiesQuickScroll() {
   const pageSize = 20;
@@ -13,10 +14,7 @@ export default function OpportuntiesQuickScroll() {
   const isMidScreen = useMediaQuery("(min-width: 768px)");
 
   const handleScroll: React.UIEventHandler = (e) => {
-    const clientHeight = e.currentTarget.clientHeight;
-    const scrollTop = e.currentTarget.scrollTop;
-    const scrollHeight = e.currentTarget.scrollHeight;
-    if (scrollHeight - scrollTop === clientHeight) {
+    if (hasReachedBottom(e)) {
       loadMore(items.pop()?.cursor);
     }
   };

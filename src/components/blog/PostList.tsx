@@ -4,17 +4,15 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import MidPostCard from "./MidPostCard";
 import { usePaginatedPosts } from "./hooks";
 import { Skeleton } from "@mui/material";
-import { getDocHeight } from "@/utils/scroll";
+import { hasScrolledDown } from "@/utils/scroll";
 
 export default function PostList() {
   const { items, loadMore, fetching } = usePaginatedPosts({ first: 6 });
 
   const handleScroll = React.useCallback(() => {
     const scrollModifier = 300;
-    const docHeight = getDocHeight();
-    const currentScroll = window.scrollY + window.innerHeight;
 
-    if (currentScroll + scrollModifier > docHeight) {
+    if (hasScrolledDown(scrollModifier)) {
       loadMore(items.pop()?.cursor ?? undefined);
     }
   }, [items, loadMore]);
