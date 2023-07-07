@@ -25,7 +25,7 @@ export default function EnsureAuth(props: LayoutProps) {
       setIsAuthenticated(true);
       dispatch(setAdminStaff(data.me));
     }
-  }, [data]);
+  }, [data, dispatch]);
 
   React.useEffect(() => {
     const interval = setInterval(async () => {
@@ -47,7 +47,7 @@ export default function EnsureAuth(props: LayoutProps) {
         }
       }
     });
-  }, []);
+  }, [router, admin.staff, refetch]);
 
   return (
     <React.Fragment>
