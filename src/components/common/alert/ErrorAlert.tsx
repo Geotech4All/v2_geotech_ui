@@ -24,8 +24,10 @@ export default function ErrorAlert(props: ErrorAlertProps) {
     if (typeof error === "string") {
       setStrError(error as string);
     } else if (error satisfies CustomErrorType) {
+      console.log("Custom", error);
       setCustomErrors(error as CustomErrorType);
     } else if (error satisfies CombinedError) {
+      console.log("Combined", error);
       setCombinedErr(error as CombinedError);
     }
   }, [error]);

@@ -17,7 +17,7 @@ export default function Opportunites() {
     OpportunityDates.AnyTime,
   );
   const pageSize = 20;
-  const { items, error } = usePaginatedOpportunites({
+  const { items, error, fetching } = usePaginatedOpportunites({
     datePosted,
     first: pageSize,
     title_Icontains: title,
@@ -46,7 +46,9 @@ export default function Opportunites() {
         <div className="flex-1 md:ml-[21rem] flex flex-col gap-3">
           <Search onSearch={handleChangeTitle} />
           {error && <ErrorAlert error={error.message} />}
-          {!error && <OpportunityList opportunities={items} />}
+          {!error && (
+            <OpportunityList fetching={fetching} opportunities={items} />
+          )}
         </div>
       </div>
     </Page>

@@ -1,9 +1,10 @@
-import { Page } from "@/components/common";
+import { HTMLRederrer, Page, RelativeTime } from "@/components/common";
 import { QueryReturs } from "@/graphql/types";
 import { graphqlQuery } from "@/graphql/utils/fetch";
 import { QueryOpportunityArgs } from "@/graphql/generated";
 import { OPPORTUNITY } from "@/graphql/requests/queries/Queries";
 import { Metadata } from "next";
+import Image from "next/image";
 
 interface OpportunityDetailsProps {
   params: {
@@ -54,10 +55,47 @@ export default async function OpportunityDetails(
 ) {
   const { params } = props;
   const id = params.slug.split("-")[0];
-  await getOpportunity(id);
+  const opportunity = await getOpportunity(id);
   return (
-    <Page>
-      Opportunity
+    <Page className="bg-white p-2 md:p-5 rounded-lg font-nunito">
+      <article className="flex flex-col gap-5">
+        <section className="flex flex-col gap-3">
+          <div className="flex items-start justify-between">
+            <div className="flex gap-2 items-start">
+              <Image
+                width={70}
+                height={70}
+                className="rounded-md border"
+                alt={opportunity?.organization?.logo?.description ??
+                  "image placeholder"}
+                src={opportunity?.organization?.logo?.url ??
+                  "/image_placeholder.svg"}
+              />
+              <h1 className="font-medium text-lg">{opportunity?.title}</h1>
+            </div>
+            <div>
+              <RelativeTime
+                className="text-xs md:text-base"
+                dateTime={opportunity?.lastUpdated ?? ""}
+              />
+            </div>
+          </div>
+          <ul className="flex items-center gap-2">
+            {opportunity?.tags?.map((tag) => (
+              <span
+                key={tag?.tagId}
+                className="bg-black/10 capitalize text-black/60 text-sm p-1 px-2 rounded-md"
+              >
+                {tag?.title}
+              </span>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h3 className="font-bold">Project Overview</h3>
+          <HTMLRederrer html={opportunity?.content ?? ""} />
+        </section>
+      </article>
     </Page>
   );
 }

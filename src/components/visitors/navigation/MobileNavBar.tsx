@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
@@ -41,7 +41,7 @@ export default function MobileNavBar() {
         </div>
       </motion.nav>
       {navOpen && (
-        <motion.div
+        <div
           onClick={toggleNav}
           key={Math.random()}
           className="fixed z-10 inset-0 bg-black/10"

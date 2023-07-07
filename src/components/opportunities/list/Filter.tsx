@@ -10,9 +10,9 @@ import {
 } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { SyntheticEvent } from "react";
-import TagList from "../common/tags/TagList";
+import { TagList } from "@/components/tag";
 import { OpportunityDates, useTagsQuery } from "@/graphql/generated";
-import { TagEdgeDataType } from "../tag/types";
+import { TagEdgeDataType } from "@/components/tag/types";
 
 interface FilterProps {
   onTagChange: (tags: TagEdgeDataType[]) => void;

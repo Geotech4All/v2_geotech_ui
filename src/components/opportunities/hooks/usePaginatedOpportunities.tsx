@@ -25,7 +25,6 @@ export default function usePaginatedOpportunites(
   );
 
   React.useEffect(() => {
-    console.log("Fetched more");
     if (data?.opportunities?.edges) {
       setItems((curr) =>
         new Set(Array.from(curr).concat(data?.opportunities?.edges))

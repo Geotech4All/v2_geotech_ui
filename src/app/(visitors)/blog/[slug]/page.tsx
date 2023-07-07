@@ -1,6 +1,5 @@
 import React from "react";
-import TiptapPostSection from "@/components/blog/TiptapPostArticle";
-import { Page } from "@/components/common";
+import { HTMLRederrer, Page } from "@/components/common";
 import Author from "@/components/common/users/Author";
 import { QueryGetPostByIdArgs } from "@/graphql/generated";
 import { POST_DETAIL } from "@/graphql/requests/queries/Queries";
@@ -81,7 +80,7 @@ export default async function PostDetails(props: PageProps) {
             src={post?.coverPhoto?.url ?? ""}
           />
         </figure>
-        <TiptapPostSection
+        <HTMLRederrer
           className="mt-8 flex flex-col gap-4 font-medium md:text-lg"
           html={post?.body ?? ""}
         />

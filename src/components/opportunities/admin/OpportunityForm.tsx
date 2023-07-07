@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Tiptap } from "@/components/common/admin";
+import { Tiptap } from "@/components/common/tiptap/form";
 import { SelectTags, TagList, TagNodeDataType } from "@/components/tag";
 import { Editor } from "@tiptap/core";
 import {

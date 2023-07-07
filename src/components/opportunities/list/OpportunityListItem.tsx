@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { OpportunityNodeDataType } from "./types";
 import Image from "next/image";
-import { RelativeTime } from "../common";
+import { RelativeTime } from "@/components/common";
+import { OpportunityNodeDataType } from "@/components/opportunities/types";
 
 interface OpportunityListItemProps {
   opportunity: OpportunityNodeDataType | undefined;
@@ -21,7 +21,7 @@ export default function OpportunityListItem(props: OpportunityListItemProps) {
       href={url}
       className={`
       flex-flex-col gap-3 p-3 md:p-5 duration-300 rounded-lg border
-      shadow-black/5 transition hover:shadow-lg font-medium
+      shadow-black/5 transition hover:shadow-lg font-medium bg-white
     `}
     >
       <div className="font-nunito flex items-start justify-between">
@@ -29,7 +29,7 @@ export default function OpportunityListItem(props: OpportunityListItemProps) {
           <Image
             width={50}
             height={50}
-            className="rounded-md"
+            className="rounded-md border"
             src={logo ? logo.url : "/image_placeholder.svg"}
             alt={logo
               ? logo.description ?? ""
@@ -58,7 +58,6 @@ export default function OpportunityListItem(props: OpportunityListItemProps) {
         </div>
         <div>
           <div className="flex items-center gap-2 text-black/40 font-medium">
-            <span className="hidden md:flex">Posted</span>
             <RelativeTime
               className="whitespace-nowrap"
               dateTime={opportunity?.lastUpdated ?? ""}

@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { adminUrls } from "@/constants/urls";
 import AdminLink from "./AdminLink";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -52,18 +52,12 @@ export default function AdminNavBar() {
           </ul>
         </div>
       </motion.nav>
-      <AnimatePresence>
-        {admin.navOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            key={Math.random()}
-            onClick={toggleNavOpen}
-            className="fixed bg-black/5 inset-0"
-          />
-        )}
-      </AnimatePresence>
+      {admin.navOpen && (
+        <div
+          onClick={toggleNavOpen}
+          className="fixed bg-black/5 inset-0"
+        />
+      )}
     </React.Fragment>
   );
 }

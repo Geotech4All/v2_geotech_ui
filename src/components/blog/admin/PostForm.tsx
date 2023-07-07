@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Tiptap } from "@/components/common/admin";
+import { Tiptap } from "@/components/common/tiptap/form";
 import { Editor } from "@tiptap/core";
 import { useCreateUpdatePostMutation } from "@/graphql/generated";
 

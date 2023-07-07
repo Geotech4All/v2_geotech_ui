@@ -12,7 +12,7 @@ export const metadata = {
     default: "Geotech",
   },
   keywords: ["Geology", "Technology", "Opportunities"],
-  authors: [{name: "Ezekiel Victor", url: "https://vice.codes"}],
+  authors: [{ name: "Ezekiel Victor", url: "https://vice.codes" }],
 };
 
 export default function VisitorsLayout(props: PageProps) {

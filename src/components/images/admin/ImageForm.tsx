@@ -83,7 +83,7 @@ export default function ImageForm(props: ImageFormProps) {
     >
       <fieldset className="w-full h-full flex z-0 flex-col gap-2 items-center relative justify-center">
         <p className="font-bold text-2xl">PNG, JPG, SVG and WEBp</p>
-        {imageError && <ErrorAlert error={imageError} />}
+        {uploadError && <ErrorAlert error={uploadError} />}
         {uploadError || error && <ErrorAlert error={error ?? uploadError} />}
         {!image ? (
           <div
