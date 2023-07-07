@@ -7,7 +7,7 @@ export type PostNodeDataType =
     postId?: string | null;
     readLength?: number | null;
     likes: number;
-    lastUpdated: unknown;
+    lastUpdated: any;
     author: {
       __typename?: "UserType";
       fullName?: string | null;
