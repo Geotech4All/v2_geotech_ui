@@ -12,6 +12,7 @@ import { Metadata } from "next";
 import PostReadLength from "@/components/blog/PostReadLength";
 import Image from "next/image";
 import { UPDATE_POST_VIEWS } from "@/graphql/requests/mutations/VisitorMutations";
+import { UpdatedPostViews } from "@/components/blog";
 
 interface PageProps {
   params: {
@@ -89,6 +90,7 @@ export default async function PostDetails(props: PageProps) {
           html={post?.body ?? ""}
         />
       </article>
+      <UpdatedPostViews postId={post?.postId ?? ""} />
     </Page>
   );
 }
@@ -96,12 +98,6 @@ export default async function PostDetails(props: PageProps) {
 async function getPostDetails(postId: string) {
   const url = process.env.NEXT_PUBLIC_PROD_GRAPHQL_ENDPOINT ?? "";
   type PostQueryReturn = typeof QueryReturs.getPostById;
-  type IncreaseViewsReturns = typeof MutationReturns.increasePostViewCount;
-
-  graphqlQuery<
-    MutationIncreasePostViewCountArgs,
-    { increasePostViewCount: IncreaseViewsReturns }
-  >(url, UPDATE_POST_VIEWS, { postId });
 
   const res = await graphqlQuery<
     QueryGetPostByIdArgs,
