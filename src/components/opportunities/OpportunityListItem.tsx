@@ -20,7 +20,7 @@ export default function OpportunityListItem(props: OpportunityListItemProps) {
     <Link
       href={url}
       className={`
-      flex-flex-col gap-3 p-5 duration-300 rounded-lg border
+      flex-flex-col gap-3 p-3 md:p-5 duration-300 rounded-lg border
       shadow-black/5 transition hover:shadow-lg font-medium
     `}
     >
@@ -36,10 +36,12 @@ export default function OpportunityListItem(props: OpportunityListItemProps) {
               : "orgainzation logo placeholder"}
           />
           <div>
-            <h5 className="font-bold text-lg">{opportunity?.title}</h5>
+            <h5 className="font-bold line-clamp-1 text-lg">
+              {opportunity?.title}
+            </h5>
             <div className="text-xs flex items-center gap-3">
               {opportunity?.organization && (
-                <span className="text-black/60">
+                <span className="text-black/60 line-clamp-1">
                   {opportunity.organization.name}
                 </span>
               )}
@@ -56,8 +58,11 @@ export default function OpportunityListItem(props: OpportunityListItemProps) {
         </div>
         <div>
           <div className="flex items-center gap-2 text-black/40 font-medium">
-            <span>Posted</span>
-            <RelativeTime dateTime={opportunity?.lastUpdated ?? ""} />
+            <span className="hidden md:flex">Posted</span>
+            <RelativeTime
+              className="whitespace-nowrap"
+              dateTime={opportunity?.lastUpdated ?? ""}
+            />
           </div>
         </div>
       </div>
