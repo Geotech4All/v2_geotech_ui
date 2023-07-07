@@ -34,22 +34,19 @@ export default function MobileNavBar() {
         </div>
         <div className="relative h-full w-full">
           <ul className="p-2 flex flex-col gap-0.5">
-            {visitoUrls.map((url) => <MobileLink key={url.href} url={url} onClick={toggleNav} />)}
+            {visitoUrls.map((url) => (
+              <MobileLink key={url.href} url={url} onClick={toggleNav} />
+            ))}
           </ul>
         </div>
       </motion.nav>
-      <AnimatePresence>
-        {navOpen && (
-          <motion.div
-            onClick={toggleNav}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            key={Math.random()}
-            className="fixed z-10 inset-0 bg-black/10"
-          />
-        )}
-      </AnimatePresence>
+      {navOpen && (
+        <motion.div
+          onClick={toggleNav}
+          key={Math.random()}
+          className="fixed z-10 inset-0 bg-black/10"
+        />
+      )}
     </React.Fragment>
   );
 }
