@@ -6,7 +6,7 @@ export default function PostAdmin() {
   return (
     <Page>
       <div className="p-2 flex flex-col gap-2">
-        <Search />
+        <Search placeholder="Search Posts" />
         <AdminPostList />
       </div>
       <LinkButton href="/admin/blog/new">

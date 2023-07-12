@@ -8,7 +8,7 @@ import {
 } from "@/components/opportunities";
 import { TagEdgeDataType } from "@/components/tag/types";
 import { OpportunityDates } from "@/graphql/generated";
-import { hasReachedBottom, hasScrolledDown } from "@/utils/scroll";
+import { hasReachedBottom } from "@/utils/scroll";
 import React from "react";
 
 export default function Opportunites() {
@@ -57,7 +57,7 @@ export default function Opportunites() {
             md:ml-[21rem] flex flex-col gap-3
           `}
         >
-          <Search onSearch={handleChangeTitle} />
+          <Search placeholder="Search Opportunity" onSearch={handleChangeTitle} />
           {error && <ErrorAlert error={error.message} />}
           {!error && (
             <OpportunityList fetching={fetching} opportunities={items} />

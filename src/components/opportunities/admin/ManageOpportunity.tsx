@@ -60,7 +60,10 @@ function ManageOptions(props: ManageOpportuntiyProps) {
     <React.Fragment>
       <div className="flex flex-col md:flex-row p-1 rounded items-center gap-3">
         <Link
-          className="text-yellow-400 flex-1 flex items-center gap-3 hover:bg-yellow-400/10 p-0.5 rounded"
+          className={`
+            text-yellow-400 flex-1 flex items-center gap-3 hover:bg-yellow-400/10
+            p-0.5 rounded w-full px-3 md:px-0.5
+          `}
           href={url}
         >
           <AiFillEdit />

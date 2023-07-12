@@ -8,7 +8,7 @@ export default function AdminPostList() {
   const { items, refetch } = useAdminPaginatedPosts({ first: 20 });
 
   const handlePostDelete = () => {
-    refetch();
+    refetch({ requestPolicy: "network-only" });
   };
 
   return (

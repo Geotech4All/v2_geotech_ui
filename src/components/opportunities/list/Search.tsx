@@ -5,11 +5,12 @@ import { twMerge } from "tailwind-merge";
 
 interface SearchProps {
   className?: string;
+  placeholder?: string;
   onSearch?: (search?: string) => void;
 }
 
 export default function Search(props: SearchProps) {
-  const { onSearch, className } = props;
+  const { onSearch, placeholder, className } = props;
   const searchRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleSearch = () => {
@@ -36,7 +37,7 @@ export default function Search(props: SearchProps) {
         onKeyDown={handleKeyDown}
         ref={searchRef}
         className="w-full text-xl outline-none"
-        placeholder="Search Opportunity"
+        placeholder={placeholder}
         type="text"
       />
       <button
