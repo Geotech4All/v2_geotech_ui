@@ -31,8 +31,9 @@ export default function OpportunityForm(props: OpportunityFormProps) {
   const { initialOpportunity } = props;
   const admin = useAppSelector(selectAdmin);
   const formEnabled = Boolean(
-    admin.staff?.staff?.canCreateOpportunities
-    || admin.staff?.staff?.canUpdateOpportunities)
+    admin.staff?.staff?.canCreateOpportunities ||
+      admin.staff?.staff?.canUpdateOpportunities,
+  );
   const [{ fetching, error }, saveOpportunity] =
     useCreateUpdateOpportunityMutation();
   const [showSelectOrg, setShowSelectOrg] = React.useState(false);
@@ -101,7 +102,8 @@ export default function OpportunityForm(props: OpportunityFormProps) {
         <ErrorAlert error={error} />
         <fieldset
           disabled={!formEnabled}
-          className="max-w-4xl disabled:opacity-40 flex flex-col gap-9 w-full">
+          className="max-w-4xl disabled:opacity-40 flex flex-col gap-9 w-full"
+        >
           <fieldset className="flex flex-col gap-5">
             <input
               ref={titleRef}
