@@ -8,7 +8,7 @@ export default function useAdminPaginatedPosts(
 ) {
   const { after: initialAfter, ...rest } = variables;
   const [after, setAfter] = React.useState(initialAfter);
-  const [{ fetching, data, error }] = useAllPostsQuery({
+  const [{ fetching, data, error }, refetch] = useAllPostsQuery({
     variables: {
       after,
       ...rest,
@@ -32,5 +32,6 @@ export default function useAdminPaginatedPosts(
     items: Array.from(items.values()),
     loadMore,
     error,
+    refetch
   };
 }

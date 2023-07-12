@@ -5,7 +5,11 @@ import React from "react";
 import AdminPostListItem from "./AdminPostListItem";
 
 export default function AdminPostList() {
-  const { items } = useAdminPaginatedPosts({ first: 20 });
+  const { items, refetch } = useAdminPaginatedPosts({ first: 20 });
+
+  const handlePostDelete = () => {
+    refetch();
+  };
 
   return (
     <React.Fragment>
@@ -13,7 +17,11 @@ export default function AdminPostList() {
         ? (
           <ul className="flex flex-col gap-1">
             {items.map((item) => (
-              <AdminPostListItem post={item?.node} key={item?.cursor} />
+              <AdminPostListItem
+                onDelete={handlePostDelete}
+                post={item?.node}
+                key={item?.cursor}
+              />
             ))}
           </ul>
         )
