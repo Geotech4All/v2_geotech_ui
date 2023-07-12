@@ -1,15 +1,16 @@
 "use client";
 import React from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import ToolBar from "./toolbar/Toolbar";
-import { Heading, FontFamily } from "./nodes";
+import { Editor } from "@tiptap/core";
 import Text from "@tiptap/extension-text";
+import Image from "@tiptap/extension-image";
+import StarterKit from "@tiptap/starter-kit";
+import { Transaction } from "@tiptap/pm/state";
 import Paragraph from "@tiptap/extension-paragraph";
 import TextStyle from "@tiptap/extension-text-style";
+import { EditorContent, useEditor } from "@tiptap/react";
+import { FontFamily, Heading } from "./nodes";
+import { ToolBar } from "./toolbar";
 import "./EditorStyles.scss";
-import { Editor } from "@tiptap/core";
-import { Transaction } from "@tiptap/pm/state";
 
 interface TiptapProps {
   initialContent?: string;
@@ -30,15 +31,24 @@ export default function Tiptap(props: TiptapProps) {
   const editor = useEditor({
     editorProps: {
       attributes: {
-        class: "min-h-[30rem] !focus-within:border-none !border-none !border-black/5 p-2",
+        class:
+          "min-h-[30rem] !focus-within:border-none !border-none !border-black/5 p-2",
       },
     },
     onUpdate: handleChange,
-    extensions: [StarterKit, Heading, FontFamily, Text, Paragraph, TextStyle],
+    extensions: [
+      StarterKit,
+      Heading,
+      FontFamily,
+      Text,
+      Paragraph,
+      TextStyle,
+      Image,
+    ],
     content: initialContent,
   });
-  const firstText =
-    editor?.state.doc.content.firstChild?.content.firstChild?.text;
+  const firstText = editor?.state.doc.content.firstChild?.content.firstChild
+    ?.text;
 
   return (
     <div className="p-1 rounded-lg">

@@ -1,5 +1,5 @@
-import Tooltip from "@mui/material/Tooltip";
 import React from "react";
+import Tooltip from "@mui/material/Tooltip";
 import { IconType } from "react-icons/lib";
 
 interface ToolBarButtonProps
@@ -36,7 +36,7 @@ const ToolBarButton = React.forwardRef<HTMLButtonElement, ToolBarButtonProps>(
         </button>
       </Tooltip>
     );
-  }
+  },
 );
 
 ToolBarButton.displayName = "ToolBarButton";

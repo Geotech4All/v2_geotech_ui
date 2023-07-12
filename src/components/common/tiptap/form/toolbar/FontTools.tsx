@@ -1,12 +1,11 @@
 "use client";
-import Box from "@mui/material/Box";
 import React from "react";
+import Box from "@mui/material/Box";
+import { Editor } from "@tiptap/react";
 import { RxText } from "react-icons/rx";
 import { FaAngleDown } from "react-icons/fa";
-import ToolGroup from "./ToolGroup";
-import ToolBarButton from "./ToolBarButton";
-import { TiptapToolProps } from "./toolbarTypes";
-import { Editor } from "@tiptap/react";
+import { ToolBarButton, ToolGroup } from ".";
+import type { TiptapToolProps } from ".";
 
 export default function FontTools(props: TiptapToolProps) {
   const { editor } = props;
@@ -14,7 +13,7 @@ export default function FontTools(props: TiptapToolProps) {
 
   const toggleFontOpen = () => setFontOpen((curr) => !curr);
 
-  const textRef = React.useRef() as React.MutableRefObject<HTMLButtonElement>;
+  const barRef = React.useRef() as React.MutableRefObject<HTMLButtonElement>;
 
   const activeFont = getSelectionForm(editor);
 
@@ -27,14 +26,19 @@ export default function FontTools(props: TiptapToolProps) {
 
   return (
     <React.Fragment>
-      <ToolBarButton onClick={toggleFontOpen} tooltipPlacement="bottom" tooltip="Font" ref={textRef}>
+      <ToolBarButton
+        onClick={toggleFontOpen}
+        tooltipPlacement="bottom"
+        tooltip="Font"
+        ref={barRef}
+      >
         <RxText />
         {activeFont}
         <FaAngleDown />
       </ToolBarButton>
 
       <ToolGroup
-        anchorEl={textRef.current}
+        anchorEl={barRef.current}
         onClose={toggleFontOpen}
         open={fontOpen}
       >
@@ -54,7 +58,7 @@ export default function FontTools(props: TiptapToolProps) {
   );
 }
 
-function getSelectionForm(editor:Editor | null) {
+function getSelectionForm(editor: Editor | null) {
   for (const font of fontFamilies) {
     if (editor?.isActive("textStyle", { fontFamily: font.fontFamily })) {
       return font.name;
@@ -68,7 +72,6 @@ interface FontFamilyType {
   className?: string;
   name: string;
 }
-
 
 const fontFamilies: FontFamilyType[] = [
   {
