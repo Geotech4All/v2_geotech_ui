@@ -29,7 +29,7 @@ const ToolBarButton = React.forwardRef<HTMLButtonElement, ToolBarButtonProps>(
           className={twMerge(
             `
             hover:bg-black/10 p-1 px-2 flex items-center font-medium
-            disabled:hover:bg-white rounded transition-all
+            disabled:hover:bg-white rounded transition-all flex-nowrap
             disabled:text-black/20 gap-2 outline-none`, 
             className,
           )}

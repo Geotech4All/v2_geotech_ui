@@ -36,7 +36,7 @@ export default function ManageOpportuntiy(props: ManageOpportuntiyProps) {
           src={opportunity?.node?.organization?.logo?.url ??
             "/image_placeholder.svg"}
         />
-        <h4 className="font-medium text-lg">{opportunity?.node?.title}</h4>
+        <h4 className="font-medium line-clamp-1 text-lg">{opportunity?.node?.title}</h4>
       </div>
       {isMediumScreen
         ? <ManageOptions opportunity={opportunity} />

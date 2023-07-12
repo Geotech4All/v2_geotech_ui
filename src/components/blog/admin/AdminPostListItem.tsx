@@ -20,7 +20,7 @@ export default function AdminPostListItem(props: AdminPostLinkItemPorps) {
       <Image
         width={50}
         height={50}
-        className="aspect-square rounded-full"
+        className="aspect-square rounded-full object-cover"
         src={post?.coverPhoto?.url ?? "/image_placeholder.svg"}
         alt={post?.coverPhoto?.description ?? "image placeholder"}
       />
