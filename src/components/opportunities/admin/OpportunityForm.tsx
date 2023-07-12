@@ -1,23 +1,27 @@
 "use client";
 import React from "react";
-import { Tiptap } from "@/components/common/tiptap/form";
-import { SelectTags, TagList, TagNodeDataType } from "@/components/tag";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Editor } from "@tiptap/core";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import TextField from "@mui/material/TextField";
+import { Tiptap } from "@/components/common/tiptap/form";
+import { useAppSelector } from "@/redux/hooks";
+import { selectAdmin } from "@/redux/slices/adminSlice";
+import { SelectTags, TagList, TagNodeDataType } from "@/components/tag";
 import {
   Maybe,
   OpportunityType,
   useCreateUpdateOpportunityMutation,
 } from "@/graphql/generated";
-import TextField from "@mui/material/TextField";
 import { ErrorAlert, PageCircularProgress } from "@/components/common";
 import {
   OrganizationDataType,
   OrganizationForm,
   SelectOrganization,
 } from "@/components/organization";
-import { Button, Divider, Modal } from "@mui/material";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 interface OpportunityFormProps {
   initialOpportunity?: Maybe<OpportunityType> | undefined;
@@ -25,6 +29,10 @@ interface OpportunityFormProps {
 
 export default function OpportunityForm(props: OpportunityFormProps) {
   const { initialOpportunity } = props;
+  const admin = useAppSelector(selectAdmin);
+  const formEnabled = Boolean(
+    admin.staff?.staff?.canCreateOpportunities
+    || admin.staff?.staff?.canUpdateOpportunities)
   const [{ fetching, error }, saveOpportunity] =
     useCreateUpdateOpportunityMutation();
   const [showSelectOrg, setShowSelectOrg] = React.useState(false);
@@ -91,7 +99,9 @@ export default function OpportunityForm(props: OpportunityFormProps) {
         className="flex items-center flex-col gap-9 w-full"
       >
         <ErrorAlert error={error} />
-        <div className="max-w-4xl flex flex-col gap-9 w-full">
+        <fieldset
+          disabled={!formEnabled}
+          className="max-w-4xl disabled:opacity-40 flex flex-col gap-9 w-full">
           <fieldset className="flex flex-col gap-5">
             <input
               ref={titleRef}
@@ -169,7 +179,7 @@ export default function OpportunityForm(props: OpportunityFormProps) {
           >
             Save
           </Button>
-        </div>
+        </fieldset>
       </form>
       <PageCircularProgress show={fetching} />
       <Modal

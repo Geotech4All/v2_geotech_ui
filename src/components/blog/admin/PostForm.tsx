@@ -88,9 +88,9 @@ export default function PostForm(props: PostFormProps) {
             placeholder="Title"
             defaultValue={initialPost?.title}
             className={`
-              text-2xl outline-none focus:shadow-xl transition-all
-              p-2 rounded md:text-6xl md:font-extrabold font-bold
-              focus:shadow-black/5 px-4
+              text-lg outline-none sm:text-2xl focus:shadow-xl transition-all
+              md:p-2 rounded lg:text-6xl md:font-extrabold font-bold
+              focus:shadow-black/5 md:px-4 px-2 p-1
             `}
           />
           <TextField
@@ -102,6 +102,7 @@ export default function PostForm(props: PostFormProps) {
             label="Summary"
             inputRef={descRef}
             defaultValue={initialPost?.abstract}
+            className="text-sm md:text-base"
             placeholder="A captivating summary of this post."
           />
           <button
