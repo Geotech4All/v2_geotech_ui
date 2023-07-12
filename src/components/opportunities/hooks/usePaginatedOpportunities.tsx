@@ -10,6 +10,7 @@ export default function usePaginatedOpportunites(
   variables: QueryOpportunitiesArgs = {},
 ) {
   const { after: initialAfter, ...rest } = variables;
+  const [loadedMore, setLoadedMore] = React.useState(false);
   const [after, setAfter] = React.useState<string | undefined>(
     initialAfter ?? undefined,
   );
@@ -26,14 +27,20 @@ export default function usePaginatedOpportunites(
 
   React.useEffect(() => {
     if (data?.opportunities?.edges) {
-      setItems((curr) =>
-        new Set(Array.from(curr).concat(data?.opportunities?.edges))
-      );
+      if (loadedMore) {
+        setItems((curr) =>
+          new Set(Array.from(curr).concat(data?.opportunities?.edges))
+        );
+        setLoadedMore(false);
+      } else {
+        setItems(new Set(data.opportunities?.edges));
+      }
       setHasMore(data.opportunities.pageInfo.hasNextPage);
     }
-  }, [data]);
+  }, [data, loadedMore]);
 
   const loadMore = (cursor?: string) => {
+    setLoadedMore(true);
     if (hasMore) {
       setAfter(cursor);
       refetch({ requestPolicy: "network-only" });

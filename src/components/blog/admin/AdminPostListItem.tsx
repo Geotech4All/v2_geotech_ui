@@ -39,34 +39,32 @@ function PostOptions(props: AdminPostLinkItemPorps) {
   const slugified = post?.title.split(" ").join("-");
   const slug = `${post?.postId}-${slugified}`;
   return (
-    <React.Fragment>
-      <div className="flex flex-col md:flex-row items-center gap-2">
-        <Link
-          href={`/admin/blog/edit/${slug}`}
-          className={`
-            flex items-center bg-yellow-200/40 text-yellow-600 p-0.5 px-2 gap-2
-            rounded border border-yellow-600
-            `}
-        >
-          <span className="aspect-square">
-            <AiFillEdit />
-          </span>
-          <span>Edit</span>
-        </Link>
-        <button
-          type="button"
-          className={`
-            flex items-center bg-red-200/40 text-red-500 p-0.5 px-2 gap-2
-            rounded border border-red-500
-            `}
-        >
-          <span className="aspect-square">
-            <AiFillDelete />
-          </span>
-          <span>Delete</span>
-        </button>
-      </div>
-    </React.Fragment>
+    <div className="flex flex-col md:flex-row items-center gap-2">
+      <Link
+        href={`/admin/blog/edit/${slug}`}
+        className={`
+          flex items-center bg-yellow-200/40 text-yellow-600 p-0.5 px-2 gap-2
+          rounded border border-yellow-600
+          `}
+      >
+        <span className="aspect-square">
+          <AiFillEdit />
+        </span>
+        <span>Edit</span>
+      </Link>
+      <button
+        type="button"
+        className={`
+          flex items-center bg-red-200/40 text-red-500 p-0.5 px-2 gap-2
+          rounded border border-red-500
+          `}
+      >
+        <span className="aspect-square">
+          <AiFillDelete />
+        </span>
+        <span>Delete</span>
+      </button>
+    </div>
   );
 }
 

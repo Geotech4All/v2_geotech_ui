@@ -1,3 +1,5 @@
 import OpportunityForm from "./OpportunityForm";
+import ManageOpportunities from "./ManageOpportunites";
+import ManageOpportuntiy from "./ManageOpportunity";
 
-export { OpportunityForm };
+export { ManageOpportunities, ManageOpportuntiy, OpportunityForm };
