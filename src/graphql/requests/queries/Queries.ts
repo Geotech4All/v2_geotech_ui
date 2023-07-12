@@ -117,6 +117,7 @@ export const POST_DETAIL = gql`
       readLength
       lastUpdated
       postId
+      abstract
     }
   }
 `;
