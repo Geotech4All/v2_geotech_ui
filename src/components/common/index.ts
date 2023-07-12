@@ -7,5 +7,6 @@ export * from "./feedback";
 export * from "./time";
 export * from "./links";
 export * from "./tiptap";
+export * from "./users";
 
 export type * from "./types";

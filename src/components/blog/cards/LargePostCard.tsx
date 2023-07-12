@@ -1,8 +1,8 @@
 import { Maybe, PostType } from "@/graphql/generated";
 import Image from "next/image";
 import Link from "next/link";
-import Author from "../common/users/Author";
-import PostReadLength from "./PostReadLength";
+import { Author } from "@/components/common";
+import { PostReadLength } from "@/components/blog";
 
 interface PostCardProps {
   admin?: boolean;
