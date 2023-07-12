@@ -23,6 +23,7 @@ export default function PostManageOptions(props: PostManageOptionsProps) {
   >(undefined);
   const slugified = post?.title.split(" ").join("-");
   const slug = `${post?.postId}-${slugified}`;
+  const url = `/admin/blog/edit/${slug}`;
   const [{}, deletePost] = useDeletePostMutation();
 
   const toggleDelete = () => setShowDelete((curr) => !curr);
@@ -47,7 +48,7 @@ export default function PostManageOptions(props: PostManageOptionsProps) {
     <React.Fragment>
       <div className="flex flex-col md:flex-row p-2 rounded-md md:items-center gap-2">
         <Link
-          href={`/admin/blog/edit/${slug}`}
+          href={url}
           className={`
             flex items-center text-yellow-400 hover:bg-yellow-500/10 px-2 gap-1 p-1
             rounded transition-all
