@@ -1,5 +1,6 @@
 export * from "./admin";
 export * from "./cards";
+export type * from "./types";
 import UpdatedPostViews from "./UpdatedPostViews";
 import PostReadLength from "./PostReadLength";
 

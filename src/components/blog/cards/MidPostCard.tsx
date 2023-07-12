@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import Author from "../common/users/Author";
-import PostReadLength from "./PostReadLength";
-import { PostNodeDataType } from "./types";
+import { Author } from "@/components/common";
+import { PostReadLength } from "@/components/blog";
+import type { PostNodeDataType } from "@/components/blog";
 
 interface PostCardProps {
   post: PostNodeDataType;
