@@ -7,9 +7,13 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { PostNodeDataType } from "../types";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { SlOptionsVertical } from "react-icons/sl";
+import { useDeletePostMutation } from "@/graphql/generated";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
 
 interface AdminPostLinkItemPorps {
   post: PostNodeDataType;
+  onDelete?: () => void;
 }
 
 export default function AdminPostListItem(props: AdminPostLinkItemPorps) {
@@ -35,36 +39,76 @@ export default function AdminPostListItem(props: AdminPostLinkItemPorps) {
 }
 
 function PostOptions(props: AdminPostLinkItemPorps) {
-  const { post } = props;
+  const { post, onDelete } = props;
+  const [showDelete, setShowDelete] = React.useState(false);
   const slugified = post?.title.split(" ").join("-");
   const slug = `${post?.postId}-${slugified}`;
+  const [{}, deletePost] = useDeletePostMutation();
+
+  const toggleDelete = () => setShowDelete((curr) => !curr);
+
+  const handleDelete = () => {
+    deletePost({ postId: post?.postId ?? "" });
+    toggleDelete();
+    onDelete && onDelete();
+  };
+
   return (
-    <div className="flex flex-col md:flex-row p-2 rounded-md items-center gap-2">
-      <Link
-        href={`/admin/blog/edit/${slug}`}
-        className={`
+    <React.Fragment>
+      <div className="flex flex-col md:flex-row p-2 rounded-md items-center gap-2">
+        <Link
+          href={`/admin/blog/edit/${slug}`}
+          className={`
           flex items-center bg-yellow-200/40 text-yellow-600 p-0.5 px-2 gap-2
           rounded border border-yellow-600 flex-1
           `}
-      >
-        <span className="aspect-square">
-          <AiFillEdit />
-        </span>
-        <span>Edit</span>
-      </Link>
-      <button
-        type="button"
-        className={`
+        >
+          <span className="aspect-square">
+            <AiFillEdit />
+          </span>
+          <span>Edit</span>
+        </Link>
+        <button
+          onClick={toggleDelete}
+          type="button"
+          className={`
           flex items-center bg-red-200/40 text-red-500 p-0.5 px-2 gap-2
           rounded border border-red-500 flex-1
           `}
-      >
-        <span className="aspect-square">
-          <AiFillDelete />
-        </span>
-        <span>Delete</span>
-      </button>
-    </div>
+        >
+          <span className="aspect-square">
+            <AiFillDelete />
+          </span>
+          <span>Delete</span>
+        </button>
+      </div>
+      <Modal open={showDelete} onClose={toggleDelete}>
+        <div className="bg-white p-3 rounded flex flex-col gap-3">
+          <div>
+            <p>Are you sure you want to delete this post?</p>
+            <h2>{post?.title}</h2>
+          </div>
+          <div>
+            <Button
+              onClick={toggleDelete}
+              variant="outlined"
+              color="warning"
+              type="button"
+            >
+              No Cancel!
+            </Button>
+            <Button
+              onClick={handleDelete}
+              variant="contained"
+              color="error"
+              type="button"
+            >
+              Yes Delete!
+            </Button>
+          </div>
+        </div>
+      </Modal>
+    </React.Fragment>
   );
 }
 
