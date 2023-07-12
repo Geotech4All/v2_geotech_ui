@@ -47,11 +47,14 @@ export default function ManageOpportuntiy(props: ManageOpportuntiyProps) {
 
 function ManageOptions(props: ManageOpportuntiyProps) {
   const { opportunity } = props;
+  const [showDelete, setShowDelete] = React.useState(false);
   const admin = useAppSelector(selectAdmin);
   const title = opportunity?.node?.title.split(" ").join("-");
   const slug = `${opportunity?.node?.opportunityId}-${title}`;
   const url = `/admin/opportunities/edit/${slug}`;
   const canDeleteOpportunities = admin.staff?.staff?.canDeleteOpportunities;
+  
+  const toggleDelete = () => setShowDelete(curr => !curr);
   
   return (
     <React.Fragment>
@@ -64,13 +67,14 @@ function ManageOptions(props: ManageOpportuntiyProps) {
           <span>Edit</span>
         </Link>
         <Button
+          onClick={toggleDelete}
           disabled={!canDeleteOpportunities}
           className="flex-1" color="error">
           <AiFillDelete size={25} />
           <span>Delete</span>
         </Button>
       </div>
-      <Modal className="flex items-center justify-center" open>
+      <Modal onClose={toggleDelete} className="flex items-center justify-center" open={showDelete}>
         <div className="bg-white flex flex-col gap-3 items-center p-3 rounded-md">
           <div className="flex flex-col gap-1 items-center">
             <p>
@@ -79,10 +83,10 @@ function ManageOptions(props: ManageOpportuntiyProps) {
             <h2 className="font-medium text-lg">{opportunity?.node?.title}</h2>
           </div>
           <div className="flex items-center gap-3">
-            <Button color="warning" variant="outlined" type="button">
+            <Button onClick={toggleDelete} color="warning" variant="outlined" type="button">
               No Cancel!
             </Button>
-            <Button variant="contained" color="error" type="button">
+            <Button onClick={toggleDelete} variant="contained" color="error" type="button">
               Yes Delete!
             </Button>
           </div>
@@ -97,6 +101,7 @@ function MobileManageOptions(props: ManageOpportuntiyProps) {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null,
   );
+
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     setAnchorEl(e.currentTarget);
