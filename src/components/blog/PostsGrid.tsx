@@ -1,8 +1,7 @@
-import { PostTypeConnection } from "@/graphql/generated";
-import { Maybe } from "graphql/jsutils/Maybe";
 import React from "react";
-import LargePostCard from "./LargePostCard";
-import MidPostCard from "./MidPostCard";
+import { Maybe } from "graphql/jsutils/Maybe";
+import { LargePostCard, MidPostCard } from "./cards";
+import { PostTypeConnection } from "@/graphql/generated";
 
 interface PostsGridProps {
   posts: Maybe<PostTypeConnection> | undefined;

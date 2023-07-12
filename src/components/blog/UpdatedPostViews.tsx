@@ -14,7 +14,6 @@ export default function UpdatedPostViews(props: UpdatedPostViewsProps) {
   }, [postId, updatePostView]);
   
   return (
-    <React.Fragment>
-    </React.Fragment>
+    <React.Fragment />
   );
 }
