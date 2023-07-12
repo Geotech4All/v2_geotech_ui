@@ -140,7 +140,7 @@ export default function PostForm(props: PostFormProps) {
               className="aspect-video rounded-md"
             />
           )}
-          <div title="Content">
+          <div>
             <Tiptap
               getEditor={getEditor}
               placeholder={<PostPlaceholder />}

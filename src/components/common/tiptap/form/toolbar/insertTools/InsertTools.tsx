@@ -3,7 +3,8 @@ import { TiptapToolProps } from "../toolbarTypes";
 import ToolBarButton from "../ToolBarButton";
 import { FaAngleDown } from "react-icons/fa";
 import ToolGroup from "../ToolGroup";
-import { ImageTool } from ".";
+import { ImageTool, LinkTool } from ".";
+import Box from "@mui/material/Box";
 
 export default function InsertTools(props: TiptapToolProps) {
   const { editor } = props;
@@ -24,12 +25,14 @@ export default function InsertTools(props: TiptapToolProps) {
         <FaAngleDown />
       </ToolBarButton>
       <ToolGroup
-        className="p-2"
         open={insertOpen}
         onClose={toggleOpen}
         anchorEl={barRef.current}
       >
-        <ImageTool editor={editor} />
+        <Box className="p-2">
+          <ImageTool editor={editor} />
+          <LinkTool cleanUp={toggleOpen} editor={editor} />
+        </Box>
       </ToolGroup>
     </React.Fragment>
   );

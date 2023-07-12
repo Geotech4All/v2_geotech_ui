@@ -25,7 +25,7 @@ export default function ImageTool(props: TiptapToolProps) {
     <React.Fragment>
       <ToolBarButton
         tooltip="Insert Image"
-        tooltipPlacement="bottom"
+        tooltipPlacement="left"
         onClick={toggleImagePicker}
       >
         <BsImage />

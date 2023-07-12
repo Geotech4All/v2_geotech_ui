@@ -8,7 +8,7 @@ import { Transaction } from "@tiptap/pm/state";
 import Paragraph from "@tiptap/extension-paragraph";
 import TextStyle from "@tiptap/extension-text-style";
 import { EditorContent, useEditor } from "@tiptap/react";
-import { FontFamily, Heading } from "./nodes";
+import { FontFamily, Heading, Link } from "./nodes";
 import { ToolBar } from "./toolbar";
 import "./EditorStyles.scss";
 
@@ -44,6 +44,7 @@ export default function Tiptap(props: TiptapProps) {
       Paragraph,
       TextStyle,
       Image,
+      Link
     ],
     content: initialContent,
   });

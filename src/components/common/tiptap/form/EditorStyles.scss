@@ -71,6 +71,15 @@ h4.editor-heading {
   }
 }
 
+a.editor-link {
+  color: #004FBD;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+a.editor-link:hover {
+  color: #270E93;
+}
 
 .editor-heading-h1 {
   font-size: 4rem;
@@ -129,9 +138,3 @@ li[role=checkbox].editor-listItemUnchecked::before {
 li[role=checkbox].editor-listItemChecked::before {
   content: url("/checkbox-checked.svg");
 }
-  /* list: { */
-  /*   nested: { */
-  /*     listitem: 'editor-nested-listitem', */
-  /*   }, */
-  /*   listitemChecked: 'editor-listItemChecked', */
-  /* }, */
