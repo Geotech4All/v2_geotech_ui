@@ -1,4 +1,3 @@
-"use client";
 import PostList from "@/components/blog/PostList";
 import PostsGrid from "@/components/blog/PostsGrid";
 import { Page } from "@/components/common";
