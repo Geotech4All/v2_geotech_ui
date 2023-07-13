@@ -1,4 +1,4 @@
-import { NothingFound } from "@/components/common";
+import { NothingFound, Page } from "@/components/common";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -8,5 +8,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 export default function AdminPodcasts() {
-  return <NothingFound caption="Comming soon" />;
+  return (
+    <Page>
+      <NothingFound caption="No Poscasts Yet" />
+    </Page>
+  );
 }
