@@ -29,7 +29,7 @@ export default function MidPostCard(props: PostCardProps) {
           <Image
             width={400}
             height={225}
-            className="w-full object-cover"
+            className="w-full aspect-video object-cover"
             alt={post?.coverPhoto?.description ?? "cover"}
             src={post?.coverPhoto?.url ?? "/reading_geotech.svg"}
           />

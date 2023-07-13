@@ -27,7 +27,7 @@ export default function LargePostCard(props: PostCardProps) {
           <Image
             width={700}
             height={395}
-            className="w-full object-cover"
+            className="w-full aspect-video object-cover"
             alt={post?.coverPhoto?.description ?? "cover"}
             src={post?.coverPhoto?.url ?? "/reading-geotech.svg"}
           />

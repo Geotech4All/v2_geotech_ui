@@ -26,7 +26,7 @@ export default function Error(props: ErrorProps) {
       >
         <h2 className="font-bold text-2xl">Something went wrong!</h2>
         <div className="flex gap-1 flex-col items-center font-medium">
-          <p className="text-red-600 text-lg">{error.message}</p>
+          <p className="text-red-600 text-center text-lg">{error.message}</p>
           <button onClick={resetError} className={`
               bg-blue-700 p-1 rounded text-white px-4
               hover:bg-blue-800 active:bg-blue-800 transition
