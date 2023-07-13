@@ -137,7 +137,7 @@ export default function PostForm(props: PostFormProps) {
               src={coverPhoto.url}
               alt={coverPhoto.description ?? ""}
               title={coverPhoto.description ?? "Cover photo"}
-              className="aspect-video rounded-md"
+              className="aspect-video w-full rounded-md"
             />
           )}
           <div>
