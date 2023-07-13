@@ -6,13 +6,15 @@ import { usePaginatedPosts } from "./hooks";
 import { hasScrolledDown } from "@/utils/scroll";
 
 export default function PostList() {
-  const { items, loadMore, fetching } = usePaginatedPosts({ first: 6 });
+  const { items, loadMore, fetching } = usePaginatedPosts({ first: 20 });
 
   const handleScroll = React.useCallback(() => {
-    const scrollModifier = 300;
+    const scrollModifier = 200;
 
     if (hasScrolledDown(scrollModifier)) {
-      loadMore(items.pop()?.cursor ?? undefined);
+      const cursor = items.pop()?.cursor;
+      console.log(cursor);
+      loadMore(cursor ?? undefined);
     }
   }, [items, loadMore]);
 
