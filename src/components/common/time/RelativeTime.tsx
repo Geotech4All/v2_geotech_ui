@@ -1,4 +1,5 @@
 import moment from "moment";
+import { twMerge } from "tailwind-merge";
 
 interface RelativeTimeProps {
   dateTime: string;
@@ -8,9 +9,12 @@ interface RelativeTimeProps {
 export default function RelativeTime(props: RelativeTimeProps) {
   const { dateTime, className } = props;
   const relativeTime = moment(dateTime).fromNow();
-  
+
   return (
-    <time className={className} dateTime={dateTime}>
+    <time
+      className={twMerge("whitespace-nowrap", className)}
+      dateTime={dateTime}
+    >
       {relativeTime}
     </time>
   );
