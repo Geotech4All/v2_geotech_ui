@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <header
       className={`
-        relative flex flex-col justify-center md:grid md:grid-cols-2
+        relative flex flex-col justify-center md:grid lg:grid-cols-2
         items-center justify-items-center z-0
       `}
     >
