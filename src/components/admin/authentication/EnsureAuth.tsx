@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectAdmin, setAdminStaff } from "@/redux/slices/adminSlice";
 import { getTokens } from "@/utils/token";
 import { useRouter } from "next/navigation";
+import { PageCircularProgress } from "@/components/common";
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -52,7 +53,9 @@ export default function EnsureAuth(props: LayoutProps) {
     <React.Fragment>
       {children}
       {(!isAuthenticated || !hasTokens) && (
-        <div className="backdrop-blur-lg z-0 fixed inset-0" />
+        <div className="backdrop-blur-lg z-0 fixed inset-0">
+          <PageCircularProgress show/>
+        </div>
       )}
     </React.Fragment>
   );
