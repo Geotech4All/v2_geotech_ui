@@ -24,7 +24,7 @@ export default function OpportuntiesQuickScroll() {
       {isMidScreen && (
         <ul
           onScroll={handleScroll}
-          className="max-h-screen overflow-y-auto min-w-[23rem]"
+          className="max-h-screen overflow-y-auto w-screen max-w-sm"
         >
           <OpportunityList fetching={fetching} opportunities={items} />
         </ul>
