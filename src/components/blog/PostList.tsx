@@ -13,7 +13,6 @@ export default function PostList() {
 
     if (hasScrolledDown(scrollModifier)) {
       const cursor = items.pop()?.cursor;
-      console.log(cursor);
       loadMore(cursor ?? undefined);
     }
   }, [items, loadMore]);
